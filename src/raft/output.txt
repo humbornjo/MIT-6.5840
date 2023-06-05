@@ -1,0 +1,37 @@
+Test (2A): initial election ...
+2023/06/05 14:47:00 1 disconnect, current term 0, redo election...
+2023/06/05 14:47:00 1 becomes leader
+2023/06/05 14:47:00 0 disconnect, current term 1, redo election...
+2023/06/05 14:47:00 2 disconnect, current term 2, redo election...
+2023/06/05 14:47:00 0 becomes leader
+2023/06/05 14:47:00 2 becomes leader
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+2023/06/05 14:47:00 sever 2 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 2 received heartbeat
+2023/06/05 14:47:00 sever 2 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 2 received heartbeat
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+--- FAIL: TestInitialElection2A (0.49s)
+    config.go:449: term 3 has 3 (>1) leaders
+Test (2A): election after network failure ...
+2023/06/05 14:47:00 2 disconnect, current term 0, redo election...
+2023/06/05 14:47:00 2 becomes leader
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+2023/06/05 14:47:00 sever 1 received heartbeat
+2023/06/05 14:47:00 sever 0 received heartbeat
+2023/06/05 14:47:00 decrapted leader 2
+2023/06/05 14:47:01 1 disconnect, current term 1, redo election...
+2023/06/05 14:47:01 0 disconnect, current term 1, redo election...
+signal: interrupt
+FAIL	6.824/raft	7.463s
