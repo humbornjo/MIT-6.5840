@@ -385,6 +385,8 @@ func (cfg *config) connect(i int) {
 func (cfg *config) disconnect(i int) {
 	// fmt.Printf("disconnect(%d)\n", i)
 
+	DebugLog(dLeader, "S%d abandoned leader...\n", i)
+
 	cfg.connected[i] = false
 
 	// outgoing ClientEnds
@@ -437,6 +439,7 @@ func (cfg *config) checkOneLeader() int {
 		leaders := make(map[int][]int)
 		for i := 0; i < cfg.n; i++ {
 			if cfg.connected[i] {
+				DebugLog("INFO", "S%d is in %d state", i, cfg.rafts[i].state)
 				if term, leader := cfg.rafts[i].GetState(); leader {
 					leaders[term] = append(leaders[term], i)
 				}

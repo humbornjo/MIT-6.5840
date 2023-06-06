@@ -461,7 +461,7 @@ func (rf *Raft) ticker() {
 			Electiontimeout()   // Electiontimeout(), 睡眠200-400ms
 			rf.LogLock()        // 加锁，因为后面会修改rf的状态
 			//会超时，自己的状态只有可能是Follower或Candidate，统一转化为Candidate
-			if rf.isTimeout && rf.state == Follower {
+			if rf.isTimeout { // && rf.state == Follower
 
 				rf.state = Candidate
 				rf.votedFor = -1
