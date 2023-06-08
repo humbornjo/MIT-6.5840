@@ -361,6 +361,7 @@ func (cfg *config) cleanup() {
 // attach server i to the net.
 func (cfg *config) connect(i int) {
 	// fmt.Printf("connect(%d)\n", i)
+	DebugLog(dLeader, "S%d reconnect...\n", i)
 
 	cfg.connected[i] = true
 
@@ -385,7 +386,7 @@ func (cfg *config) connect(i int) {
 func (cfg *config) disconnect(i int) {
 	// fmt.Printf("disconnect(%d)\n", i)
 
-	DebugLog(dLeader, "S%d abandoned leader...\n", i)
+	DebugLog(dLeader, "S%d disconnect...\n", i)
 
 	cfg.connected[i] = false
 
@@ -439,7 +440,7 @@ func (cfg *config) checkOneLeader() int {
 		leaders := make(map[int][]int)
 		for i := 0; i < cfg.n; i++ {
 			if cfg.connected[i] {
-				DebugLog("INFO", "S%d is in %d state", i, cfg.rafts[i].state)
+				DebugLog(dLog, "S%d is in %d state", i, cfg.rafts[i].state)
 				if term, leader := cfg.rafts[i].GetState(); leader {
 					leaders[term] = append(leaders[term], i)
 				}
@@ -449,6 +450,9 @@ func (cfg *config) checkOneLeader() int {
 		lastTermWithLeader := -1
 		for term, leaders := range leaders {
 			if len(leaders) > 1 {
+				for _, leader := range leaders {
+					DebugLog(dError, "S%d multi leaders(%d) T: %d", leader, len(leaders), term)
+				}
 				cfg.t.Fatalf("term %d has %d (>1) leaders", term, len(leaders))
 			}
 			if term > lastTermWithLeader {

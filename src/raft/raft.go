@@ -150,7 +150,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	case Leader:
 	case Candidate:
 		rf.state = Follower
-		DPrintf("change server %d state to follower...\n", rf.me)
+		DebugLog(dVote, "S%d convert to follower...\n", rf.me)
 		// rf.votedFor = -1
 	case Follower:
 		rf.currTerm = args.Term
@@ -162,7 +162,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 }
 
 func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *AppendEntriesReply) bool {
-	DebugLog(dLog, "S%d -> S%d send {PLI: %d, PLT: %d}", rf.me, server, args.PrevLogIndex, args.PrevLogTerm)
+	DebugLog(dLog, "S%d -> S%d T: %d, send {PLI: %d, PLT: %d}", rf.me, server, rf.currTerm, args.PrevLogIndex, args.PrevLogTerm)
 	ok := rf.peers[server].Call("Raft.AppendEntries", args, reply)
 	return ok
 }
@@ -278,6 +278,8 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		}
 	} else {
 		rf.currTerm = args.Term
+		rf.isTimeout = false
+		rf.state = Follower
 		rf.votedFor = args.CandidateId
 		reply.VoteGranted = true
 		DebugLog(dVote, "S%d -> S%d vote true, from T: %d to CT: %d\n", rf.me, args.CandidateId, reply.Term, rf.currTerm)
@@ -365,6 +367,11 @@ func (rf *Raft) heartBeat() {
 	for {
 		rf.LogLock()
 		if rf.state != Leader {
+			rf.LogUnlock()
+			return
+		}
+		if rf.killed() {
+			rf.state = Follower
 			rf.LogUnlock()
 			return
 		}

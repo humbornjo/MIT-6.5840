@@ -98,14 +98,15 @@ def main(
                 cols = Columns(cols, width=col_width - 1, equal=True, expand=True)
                 print(cols)
         except:
+            # print(len(line),'\n', line)
             # Code from tests or panics does not follow format
             # so we print it as is
             if line.startswith("panic"):
                 panic = True
             # Output from tests is usually important so add a
             # horizontal line with hashes to make it more obvious
-            if not panic:
-                print("#" * console.width)
+            # if not panic:
+            #     print("#" * console.width)
             print(line, end="")
 
 

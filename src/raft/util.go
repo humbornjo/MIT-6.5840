@@ -75,8 +75,8 @@ func DebugLog(topic logTopic, format string, a ...interface{}) {
 }
 
 const (
-	minElectionTimeout = 200
-	maxElectionTimeout = 350
+	minElectionTimeout = 150
+	maxElectionTimeout = 300
 )
 
 func Electiontimeout() {
