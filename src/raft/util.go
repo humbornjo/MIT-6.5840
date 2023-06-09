@@ -6,7 +6,10 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // Debugging
@@ -79,18 +82,21 @@ const (
 	maxElectionTimeout = 300
 )
 
-func Electiontimeout() {
+func ElectionTimeout() {
 	rand.Seed(time.Now().UnixNano())
 	sleepTime := time.Duration(rand.Intn(maxElectionTimeout-minElectionTimeout+1) + minElectionTimeout)
 	time.Sleep(time.Millisecond * sleepTime)
 }
 
-func (rf *Raft) LastLogInfo() (int32, int32) {
-	if len(rf.logEntries) == 0 {
-		return -1, -1
-	}
-
-	return rf.logEntries[len(rf.logEntries)-1].Term, rf.logEntries[len(rf.logEntries)-1].Index
+func (rf *Raft) LogInfoByIndex(idx int) (index int32, term int32) {
+	// 初始化中，logEntries不为空了，为每个server加了一个初始log entry
+	// if len(rf.logEntries) == 0 {
+	// 	return 0, 0
+	// }
+	t := &testing.T{}
+	assert.Conditionf(t, func() bool { return idx >= 0 && idx < len(rf.logEntries) }, "idx out of range")
+	index, term = rf.logEntries[idx].Index, rf.logEntries[idx].Term
+	return
 }
 
 func (rf *Raft) LogLock() {

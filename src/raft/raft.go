@@ -68,6 +68,11 @@ type Raft struct {
 	commitIndex int32
 	state       int
 	isTimeout   bool
+
+	// 2B
+	lastApplied int32
+	nextIndex   []int32
+	matchIndex  []int32
 }
 
 // 2A
@@ -102,8 +107,8 @@ type AppendEntriesReply struct {
 
 func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply) {
 
-	rf.LogLock()
-	defer rf.LogUnlock()
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
 
 	reply.Term = rf.currTerm
 
@@ -174,10 +179,10 @@ func (rf *Raft) GetState() (int, bool) {
 	var term int
 	var isleader bool
 	// Your code here (2A).
-	rf.LogLock()
+	rf.mu.Lock()
 	term = int(rf.currTerm)
 	isleader = rf.state == Leader
-	rf.LogUnlock()
+	rf.mu.Unlock()
 
 	return term, isleader
 }
@@ -258,8 +263,8 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 
 	// 2A
 	// Reply false if term < currentTerm
-	rf.LogLock()
-	defer rf.LogUnlock()
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
 	reply.Term = rf.currTerm
 	if rf.currTerm > args.Term {
 		reply.VoteGranted = false
@@ -354,6 +359,7 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 func (rf *Raft) Kill() {
 	atomic.StoreInt32(&rf.dead, 1)
 	// Your code here, if desired.
+	// 如何在合适的时机关闭goroutine
 }
 
 func (rf *Raft) killed() bool {
@@ -365,25 +371,26 @@ func (rf *Raft) heartBeat() {
 	DebugLog(dLeader, "S%d convert to leader at T: %d\n", rf.me, rf.currTerm)
 
 	for {
-		rf.LogLock()
+		rf.mu.Lock()
 		if rf.state != Leader {
-			rf.LogUnlock()
+			rf.mu.Unlock()
 			return
 		}
 		if rf.killed() {
 			rf.state = Follower
-			rf.LogUnlock()
+			rf.mu.Unlock()
 			return
 		}
+		prevLogIndex, prevLogTerm := rf.LogInfoByIndex(int(rf.commitIndex))
 		args := AppendEntriesArgs{
-			Term:         rf.currTerm,
-			LeaderId:     rf.me,
-			PrevLogIndex: 0,
-			PrevLogTerm:  0,
-			Entries:      nil,
-			LeaderCommit: 0,
+			rf.currTerm,    // Term
+			rf.me,          // LeaderId
+			prevLogIndex,   // PrevLogIndex
+			prevLogTerm,    // PrevLogTerm
+			nil,            // Entries  TODO
+			rf.commitIndex, // LeaderCommit
 		}
-		rf.LogUnlock()
+		rf.mu.Unlock()
 
 		rf.isTimeout = false
 		for peerId := 0; peerId < len(rf.peers); peerId++ {
@@ -406,20 +413,20 @@ func (rf *Raft) heartBeat() {
 func (rf *Raft) StartElection() {
 	DebugLog(dTimer, "S%d convert to candidate, calling election T: %d\n", rf.me, rf.currTerm)
 
-	rf.LogLock()
+	rf.mu.Lock()
 	rf.currTerm += 1    //先将 Term 自增1
 	rf.votedFor = rf.me // 给自己投票
 	//本来应该reset ElectionTimeout的，由于并发执行，在外侧实现
 
 	// lastIndex := len(rf.logEntries) - 1
-	lastLogTerm, lastLogIndex := rf.LastLogInfo()
+	lastLogIndex, lastLogTerm := rf.LogInfoByIndex(len(rf.logEntries) - 1)
 	args := RequestVoteArgs{
-		rf.currTerm,  //Term
+		rf.currTerm,  // Term
 		rf.me,        // CandidateId
 		lastLogIndex, // LastLogIndex
 		lastLogTerm,  // LastLogTerm
 	}
-	rf.LogUnlock()
+	rf.mu.Unlock()
 
 	var nVoter int32 = 1 // 本身就是一个投票者
 	var once sync.Once   //保证在成为Leader后心跳广播的协程只存在一个
@@ -435,8 +442,8 @@ func (rf *Raft) StartElection() {
 			reply := RequestVoteReply{}
 			ok := rf.sendRequestVote(id, &args, &reply)
 
-			rf.LogLock()
-			defer rf.LogUnlock()
+			rf.mu.Lock()
+			defer rf.mu.Unlock()
 
 			if rf.state == Follower { // 已经收到了其他Leader的心跳，直接返回
 				return
@@ -465,8 +472,8 @@ func (rf *Raft) ticker() {
 			DebugLog(dTimer, "S%d not leader, election timeout...\n", rf.me)
 
 			rf.isTimeout = true // 不加锁，后面会睡眠，所以不会有问题
-			Electiontimeout()   // Electiontimeout(), 睡眠200-400ms
-			rf.LogLock()        // 加锁，因为后面会修改rf的状态
+			ElectionTimeout()   // Electiontimeout(), 睡眠200-400ms
+			rf.mu.Lock()        // 加锁，因为后面会修改rf的状态
 			//会超时，自己的状态只有可能是Follower或Candidate，统一转化为Candidate
 			if rf.isTimeout { // && rf.state == Follower
 
@@ -474,7 +481,7 @@ func (rf *Raft) ticker() {
 				rf.votedFor = -1
 				go rf.StartElection() //并发执行选举, 满足 If election timeout elapses: start new election
 			}
-			rf.LogUnlock()
+			rf.mu.Unlock()
 		}
 	}
 }
@@ -503,9 +510,10 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	// CurrTerm init 0, Do nothing
 	rf.votedFor = -1 // VotedFor init -1, for server index start from 0
 	// LogEntries init empty slice
+	rf.logEntries = []logEntry{{Command: "init server"}}
 	// isTimeout init false, reset true in ticker(), Do nothing
 	// state init Follower, Do nothing
-	// commitIndex TODO
+	// commitIndex init as 0, Do nothing
 	DebugLog(dClient, "S%d started at T:%d LLI:%d\n", rf.me, rf.currTerm, 0)
 
 	// initialize from state persisted before a crash
