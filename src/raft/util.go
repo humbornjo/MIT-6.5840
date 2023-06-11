@@ -88,7 +88,7 @@ func ElectionTimeout() {
 	time.Sleep(time.Millisecond * sleepTime)
 }
 
-func (rf *Raft) LogInfoByIndex(idx int) (index int32, term int32) {
+func (rf *Raft) LogInfoByIndex(idx int) (index int, term int) {
 	// 初始化中，logEntries不为空了，为每个server加了一个初始log entry
 	// if len(rf.logEntries) == 0 {
 	// 	return 0, 0
