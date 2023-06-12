@@ -93,6 +93,9 @@ func (rf *Raft) LogInfoByIndex(idx int) (index int, term int) {
 	// if len(rf.logEntries) == 0 {
 	// 	return 0, 0
 	// }
+	// rf.mu.Lock()
+	// defer rf.mu.Unlock()
+	DebugLog(dError, "S%d LogInfo {IDX: %d, LENLOG: %d, LOG: %v}", rf.me, idx, len(rf.logEntries), rf.logEntries[len(rf.logEntries)-1])
 	t := &testing.T{}
 	assert.Conditionf(t, func() bool { return idx >= 0 && idx < len(rf.logEntries) }, "idx out of range")
 	index, term = rf.logEntries[idx].Index, rf.logEntries[idx].Term
