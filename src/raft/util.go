@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"sort"
 	"strconv"
 	"testing"
 	"time"
@@ -88,6 +89,24 @@ func ElectionTimeout() {
 	time.Sleep(time.Millisecond * sleepTime)
 }
 
+func (rf *Raft) updateCommitIndex() {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+
+	var dupMatchIndex []int
+	dupMatchIndex = append(dupMatchIndex, rf.matchIndex...)
+	dupMatchIndex[rf.me] = rf.logEntries[len(rf.logEntries)-1].Index
+	sort.Ints(dupMatchIndex)
+	DebugLog(dError, "S%d get N: %d\n", rf.me, dupMatchIndex[(len(rf.peers)-1)/2])
+
+	var N int = dupMatchIndex[(len(rf.peers)-1)/2]
+	if N > rf.commitIndex && rf.logEntries[N].Term == rf.currTerm {
+		rf.commitIndex = N
+		defer rf.applyCond.Signal()
+		DebugLog(dError, "S%d update commitIndex CI: %d\n", rf.me, rf.commitIndex)
+	}
+}
+
 func (rf *Raft) LogInfoByIndex(idx int) (index int, term int) {
 	// 初始化中，logEntries不为空了，为每个server加了一个初始log entry
 	// if len(rf.logEntries) == 0 {
@@ -95,7 +114,7 @@ func (rf *Raft) LogInfoByIndex(idx int) (index int, term int) {
 	// }
 	// rf.mu.Lock()
 	// defer rf.mu.Unlock()
-	DebugLog(dError, "S%d LogInfo {IDX: %d, LENLOG: %d, LOG: %v}", rf.me, idx, len(rf.logEntries), rf.logEntries[len(rf.logEntries)-1])
+	// DebugLog(dError, "S%d LogInfo {IDX: %d, LENLOG: %d, LOG: %v}", rf.me, idx, len(rf.logEntries), rf.logEntries[len(rf.logEntries)-1])
 	t := &testing.T{}
 	assert.Conditionf(t, func() bool { return idx >= 0 && idx < len(rf.logEntries) }, "idx out of range")
 	index, term = rf.logEntries[idx].Index, rf.logEntries[idx].Term
@@ -117,4 +136,18 @@ func (rf *Raft) LogUnlock() {
 		DPrintf("try Release LogLock: %d\n", rf.me)
 	}
 	rf.mu.Unlock()
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func min(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
 }
