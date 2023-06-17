@@ -118,3 +118,17 @@ func (rf *Raft) LogUnlock() {
 	}
 	rf.mu.Unlock()
 }
+
+func min(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}

@@ -137,7 +137,8 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	}
 
 	// 如果在prevLogIndex处不存在一个term相同的entry，返回false
-	if args.PrevLogIndex > len(rf.logEntries)-1 || rf.logEntries[args.PrevLogIndex].Term != args.PrevLogTerm {
+	if args.PrevLogIndex > rf.logEntries[len(rf.logEntries)-1].Index ||
+		rf.logEntries[args.PrevLogIndex].Term != args.PrevLogTerm { // ATTENTION 这里可能会越界，要减去lastincludedindex
 		reply.Success = false
 		DebugLog(dVote, "S%d append fail, diff term\n", rf.me)
 		return
@@ -150,7 +151,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		rfLastLogIndex, rfLastLogTerm := rf.LogInfoByIndex(len(rf.logEntries) - 1)
 		argLastLogIndex, argLastLogTerm := args.Entries[len(args.Entries)-1].Index, args.Entries[len(args.Entries)-1].Term
 		if rfLastLogTerm < argLastLogTerm || (rfLastLogTerm == argLastLogTerm && rfLastLogIndex < argLastLogIndex) {
-			rf.logEntries = rf.logEntries[:args.PrevLogIndex+1]
+			rf.logEntries = rf.logEntries[:args.PrevLogIndex+1]    // ATTENTION
 			rf.logEntries = append(rf.logEntries, args.Entries...) // persist
 			rf.persist()
 		}
@@ -175,13 +176,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	if args.LeaderCommit > rf.commitIndex {
 		defer rf.applyCond.Signal()
 
-		lastIdx := len(rf.logEntries)
-		min := func(a, b int) int {
-			if a > b {
-				return b
-			}
-			return a
-		}
+		lastIdx := rf.logEntries[len(rf.logEntries)-1].Index + 1
 		rf.commitIndex = min(args.LeaderCommit, rf.logEntries[lastIdx-1].Index)
 		DebugLog(dCommit, "S%d commit {CI: %d, LENLOG: %d}\n", rf.me, rf.commitIndex, len(rf.logEntries))
 	}
@@ -460,7 +455,7 @@ func (rf *Raft) Start(command interface{}) (index int, term int, isLeader bool) 
 		return
 	}
 
-	index = int(len(rf.logEntries))
+	index = rf.logEntries[len(rf.logEntries)-1].Index + 1
 	term = rf.currTerm
 	rf.logEntries = append(rf.logEntries, logEntry{command, term, index})
 	rf.persist()
@@ -522,7 +517,8 @@ func (rf *Raft) broadcastAppendEntries() {
 
 		go func(id int) {
 			rf.mu.Lock()
-			if rf.nextIndex[id] > len(rf.logEntries) {
+			// 需要注意的是，当rf.nextIndex[id] == rf.logEntries[len(rf.logEntries)-1].Index+1，对应的是发送heartbeat的情况
+			if rf.nextIndex[id] > rf.logEntries[len(rf.logEntries)-1].Index+1 {
 				rf.mu.Unlock()
 				return
 			}
@@ -531,9 +527,9 @@ func (rf *Raft) broadcastAppendEntries() {
 				rf.me, id, rf.nextIndex[id]-1, len(rf.logEntries), rf.logEntries[len(rf.logEntries)-1])
 			prevLogIndex, prevLogTerm := rf.LogInfoByIndex(rf.nextIndex[id] - 1)
 			beginOfIndex := rf.nextIndex[id]
-			endOfIndex := len(rf.logEntries)
+			endOfIndex := rf.logEntries[len(rf.logEntries)-1].Index + 1
 			DebugLog(dError, "S%d send to S%d, ENTRIES: %v\n", rf.me, id,
-				rf.logEntries[len(rf.logEntries)-1])
+				rf.logEntries[beginOfIndex:])
 
 			args := AppendEntriesArgs{
 				rf.currTerm,                  // Term
@@ -564,7 +560,7 @@ func (rf *Raft) broadcastAppendEntries() {
 						}
 						// 讲道理，更新成功就要试试能不能update commitIndex
 					} else {
-						rf.nextIndex[id] /= 2
+						rf.nextIndex[id] = max(1, rf.nextIndex[id]/2)
 						DebugLog(dError, "S%d -> S%d update failed, NEXT: %d\n", rf.me, id, rf.nextIndex[id])
 					}
 					// }
@@ -580,7 +576,7 @@ func (rf *Raft) updateCommitIndex() {
 
 	var dupMatchIndex []int
 	dupMatchIndex = append(dupMatchIndex, rf.matchIndex...)
-	dupMatchIndex[rf.me] = len(rf.logEntries) - 1
+	dupMatchIndex[rf.me] = rf.logEntries[len(rf.logEntries)-1].Index
 	sort.Ints(dupMatchIndex)
 	DebugLog(dError, "S%d get N: %d\n", rf.me, dupMatchIndex[(len(rf.peers)-1)/2])
 
@@ -668,7 +664,7 @@ func (rf *Raft) StartElection() {
 						once.Do(func() {
 							rf.state = Leader
 							for i := range rf.peers {
-								rf.nextIndex[i] = len(rf.logEntries)
+								rf.nextIndex[i] = rf.logEntries[len(rf.logEntries)-1].Index + 1
 								rf.matchIndex[i] = 0
 							}
 
