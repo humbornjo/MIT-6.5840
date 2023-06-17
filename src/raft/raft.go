@@ -79,8 +79,8 @@ type Raft struct {
 	applyCh     chan ApplyMsg
 	applyCond   sync.Cond
 
-	// 2C
-
+	// 2D
+	snapshot Snapshot
 }
 
 // 2A
@@ -138,7 +138,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 
 	// 如果在prevLogIndex处不存在一个term相同的entry，返回false
 	if args.PrevLogIndex > rf.logEntries[len(rf.logEntries)-1].Index ||
-		rf.logEntries[args.PrevLogIndex].Term != args.PrevLogTerm { // ATTENTION 这里可能会越界，要减去lastincludedindex
+		rf.logEntries[args.PrevLogIndex-rf.snapshot.LastIncludedIndex].Term != args.PrevLogTerm { // ATTENTION 这里可能会越界，要减去lastincludedindex
 		reply.Success = false
 		DebugLog(dVote, "S%d append fail, diff term\n", rf.me)
 		return
@@ -151,8 +151,8 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		rfLastLogIndex, rfLastLogTerm := rf.LogInfoByIndex(len(rf.logEntries) - 1)
 		argLastLogIndex, argLastLogTerm := args.Entries[len(args.Entries)-1].Index, args.Entries[len(args.Entries)-1].Term
 		if rfLastLogTerm < argLastLogTerm || (rfLastLogTerm == argLastLogTerm && rfLastLogIndex < argLastLogIndex) {
-			rf.logEntries = rf.logEntries[:args.PrevLogIndex+1]    // ATTENTION
-			rf.logEntries = append(rf.logEntries, args.Entries...) // persist
+			rf.logEntries = rf.logEntries[:args.PrevLogIndex+1-rf.snapshot.LastIncludedIndex] // ATTENTION
+			rf.logEntries = append(rf.logEntries, args.Entries...)                            // persist
 			rf.persist()
 		}
 
@@ -174,10 +174,9 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 
 	// 最后一层判断，如果leaderCommit大于自己的commitIndex，更新自己的commitIndex
 	if args.LeaderCommit > rf.commitIndex {
-		defer rf.applyCond.Signal()
-
-		lastIdx := rf.logEntries[len(rf.logEntries)-1].Index + 1
-		rf.commitIndex = min(args.LeaderCommit, rf.logEntries[lastIdx-1].Index)
+		lastIdx := rf.logEntries[len(rf.logEntries)-1].Index
+		rf.commitIndex = min(args.LeaderCommit, rf.logEntries[lastIdx].Index)
+		rf.applyCond.Signal()
 		DebugLog(dCommit, "S%d commit {CI: %d, LENLOG: %d}\n", rf.me, rf.commitIndex, len(rf.logEntries))
 	}
 
@@ -237,6 +236,7 @@ func (rf *Raft) persist() {
 	e.Encode(rf.currTerm)
 	e.Encode(rf.votedFor)
 	e.Encode(rf.logEntries)
+	e.Encode(rf.snapshot)
 	data := w.Bytes()
 	rf.persister.SaveRaftState(data)
 }
@@ -264,8 +264,10 @@ func (rf *Raft) readPersist(data []byte) {
 	var currTerm int
 	var votedFor int
 	var logEntries []logEntry
+	var snapshot Snapshot
 
-	if d.Decode(&currTerm) != nil || d.Decode(&votedFor) != nil || d.Decode(&logEntries) != nil {
+	if d.Decode(&currTerm) != nil || d.Decode(&votedFor) != nil ||
+		d.Decode(&logEntries) != nil || d.Decode(&snapshot) != nil {
 		return
 	} else {
 		rf.mu.Lock()
@@ -273,12 +275,13 @@ func (rf *Raft) readPersist(data []byte) {
 		rf.currTerm = currTerm
 		rf.votedFor = votedFor
 		rf.logEntries = logEntries
+		rf.snapshot = snapshot
 	}
 }
 
 type Snapshot struct {
-	lastIncludedIndex int
-	lastIncludedTerm  int
+	LastIncludedIndex int
+	LastIncludedTerm  int
 }
 
 type InstallSnapshotArgs struct {
@@ -310,7 +313,123 @@ func (rf *Raft) CondInstallSnapshot(lastIncludedTerm int, lastIncludedIndex int,
 // that index. Raft should now trim its log as much as possible.
 func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
+	DebugLog(dSnap, "S%d start create snapshot LII: %d, T: %d\n",
+		rf.me, index, rf.currTerm)
+	// Your code here (2D).
+	DebugLog(dSnap, "S%d start create snapshot, before lock\n", rf.me)
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	DebugLog(dSnap, "S%d start create snapshot, after lock\n", rf.me)
 
+	if index <= rf.snapshot.LastIncludedIndex {
+		DebugLog(dSnap, "S%d snapshot too small, FIRLOGIDX: %d, IDX: %d\n", rf.me, rf.logEntries[0].Index, index)
+		return
+	}
+
+	// 不允许生成超过自己当前日志长度的快照
+	if index > rf.logEntries[len(rf.logEntries)-1].Index {
+		DebugLog(dSnap, "S%d snapshot out of order, LENLOG: %d, IDX: %d\n", rf.me, len(rf.logEntries), index)
+		return
+	}
+
+	rf.snapshot.LastIncludedIndex = index
+	rf.snapshot.LastIncludedTerm = rf.logEntries[index-rf.snapshot.LastIncludedIndex].Term
+	rf.logEntries = rf.logEntries[index-rf.snapshot.LastIncludedIndex:]
+	// USELESS ?
+	DebugLog(dSnap, "S%d start create snapshot, before persist\n", rf.me)
+	rf.persist()
+	DebugLog(dSnap, "S%d start create snapshot, after persist\n", rf.me)
+
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+	e.Encode(rf.currTerm)
+	e.Encode(rf.votedFor)
+	e.Encode(rf.logEntries)
+
+	e.Encode(rf.snapshot)
+
+	state := w.Bytes()
+
+	rf.persister.SaveStateAndSnapshot(state, snapshot)
+	DebugLog(dSnap, "S%d create snapshot LII:%d, LENLOG: %d, T: %d\n",
+		rf.me, index, len(rf.logEntries), rf.currTerm)
+}
+
+func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapshotReply) {
+	DebugLog(dSnap, "S%d start install snapshot, before lock\n", rf.me)
+	logs := []logEntry{}
+
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+
+	reply.Term = rf.currTerm
+	// 如果我的Term比你的要大，不用搞了
+	if rf.currTerm > args.Term {
+		return
+	}
+
+	// 从现在开始，args的Term >= Follower的Term
+	if rf.currTerm == args.Term { // 如何处理votefor？
+		// snapshot有延迟，与当前的log不存在交集
+		if args.LastIncludedIndex < rf.logEntries[0].Index {
+			return
+		} else if args.LastIncludedIndex <= rf.logEntries[len(rf.logEntries)-1].Index { // 存在交集
+			logs = append(logs, rf.logEntries[args.LastIncludedIndex-rf.logEntries[0].Index:]...)
+			logs[0].Command = nil
+			logs[0].Term = args.LastIncludedTerm
+		} else { // snapshot包含了server所有的log，全部discard
+			logs = append(logs, logEntry{nil, args.LastIncludedTerm, args.LastIncludedIndex})
+		}
+	} else { //有更大的term。根据普适原则，需要调整term，convert to Follower
+		logs = append(logs, logEntry{nil, args.LastIncludedTerm, args.LastIncludedIndex})
+
+		rf.currTerm = args.Term
+		rf.votedFor = args.LeaderId
+		rf.state = Follower
+		DebugLog(dLeader, "S%d in installSnapshot transfer to T: %d, convert to Follower\n", rf.me, args.Term)
+	}
+
+	rf.logEntries = logs
+	rf.persist()
+
+	// Reset state machine using snapshot contents
+	rf.snapshot = Snapshot{
+		LastIncludedIndex: args.LastIncludedIndex,
+		LastIncludedTerm:  args.LastIncludedTerm,
+	}
+	rf.commitIndex = args.LastIncludedIndex
+	rf.lastApplied = args.LastIncludedIndex
+
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+	e.Encode(rf.currTerm)
+	e.Encode(rf.votedFor)
+	e.Encode(rf.logEntries)
+
+	e.Encode(args.LastIncludedIndex)
+	e.Encode(args.LastIncludedTerm)
+	state := w.Bytes()
+
+	rf.persister.SaveStateAndSnapshot(state, args.Data)
+
+	applyMsg := ApplyMsg{
+		CommandValid:  false,
+		Command:       nil,
+		SnapshotValid: true,
+		Snapshot:      args.Data,
+		// to be fixed
+		SnapshotIndex: args.LastIncludedIndex,
+		SnapshotTerm:  args.LastIncludedTerm,
+	}
+
+	rf.applyCh <- applyMsg
+	DebugLog(dSnap, "S%d C%d install snapshot, T: %d\n", rf.me, rf.commitIndex, args.Term)
+}
+
+func (rf *Raft) sendInstallSnapshot(server int, args *InstallSnapshotArgs, reply *InstallSnapshotReply) bool {
+	DebugLog(dSnap, "S%d C%d send snapshot, T: %d", server, rf.commitIndex, args.Term)
+	ok := rf.peers[server].Call("Raft.InstallSnapshot", args, reply)
+	return ok
 }
 
 // example RequestVote RPC arguments structure.
@@ -376,6 +495,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		// 投了票，看看是不是自己人，不用管Index和term了
 		if rf.votedFor == args.CandidateId {
 			reply.VoteGranted = true
+			rf.isTimeout = false
 			DebugLog(dVote, "S%d -> S%d vote true, same term\n", rf.me, args.CandidateId)
 			return
 		} else {
@@ -575,7 +695,7 @@ func (rf *Raft) broadcastAppendEntries() {
 							rf.nextIndex[id] = endOfIndex
 							rf.matchIndex[id] = endOfIndex - 1
 							DebugLog(dError, "S%d -> S%d update success, NEXT: %v, MATCH: %v\n", rf.me, id, rf.nextIndex, rf.matchIndex)
-							go rf.updateCommitIndex()
+							rf.updateCommitIndex()
 						}
 						// 讲道理，更新成功就要试试能不能update commitIndex
 					} else {
@@ -590,8 +710,8 @@ func (rf *Raft) broadcastAppendEntries() {
 }
 
 func (rf *Raft) updateCommitIndex() {
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
+	// rf.mu.Lock()
+	// defer rf.mu.Unlock()
 
 	var dupMatchIndex []int
 	dupMatchIndex = append(dupMatchIndex, rf.matchIndex...)
@@ -619,10 +739,9 @@ func (rf *Raft) Apply() {
 			DebugLog(dError, "S%d, LENLOG: %d, LA: %d apply msg {CI: %d} \n", rf.me, len(rf.logEntries), rf.lastApplied, cid)
 			msg := ApplyMsg{
 				CommandValid: true,
-				Command:      rf.logEntries[cid].Command,
+				Command:      rf.logEntries[cid-rf.snapshot.LastIncludedIndex].Command,
 				CommandIndex: cid,
 			}
-
 			rf.applyCh <- msg
 		}
 
