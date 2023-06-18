@@ -105,8 +105,8 @@ def main(
                 panic = True
             # Output from tests is usually important so add a
             # horizontal line with hashes to make it more obvious
-            # if not panic:
-            #     print("#" * console.width)
+            if not panic:
+                print("#" * console.width)
             print(line, end="")
 
 

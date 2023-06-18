@@ -1,673 +1,569 @@
-000001 LEAD S0 abandoned leader...
-000002 CLNT S0 started at T:0 LLI:0
-000004 LEAD S1 abandoned leader...
-000003 TIMR S0 not leader, election timeout...
-000004 CLNT S1 started at T:0 LLI:0
-000004 LEAD S2 abandoned leader...
-000005 CLNT S2 started at T:0 LLI:0
-000004 TIMR S1 not leader, election timeout...
-000005 LEAD S3 abandoned leader...
-000005 TIMR S2 not leader, election timeout...
-000005 CLNT S3 started at T:0 LLI:0
-000005 LEAD S4 abandoned leader...
-000006 CLNT S4 started at T:0 LLI:0
-000005 TIMR S3 not leader, election timeout...
-000006 TIMR S4 not leader, election timeout...
-000006 LEAD S5 abandoned leader...
-000006 CLNT S5 started at T:0 LLI:0
-000006 TIMR S5 not leader, election timeout...
-000007 LEAD S6 abandoned leader...
-000007 CLNT S6 started at T:0 LLI:0
-Test (2A): multiple elections ...
-000007 TIMR S6 not leader, election timeout...
-002059 TIMR S2 not leader, election timeout...
-002060 TIMR S2 convert to candidate, calling election T: 0
-002063 VOTE S6 C0 ask for vote, T: 1
-002063 VOTE S1 C0 ask for vote, T: 1
-002064 VOTE S4 C0 ask for vote, T: 1
-002064 VOTE S5 C0 ask for vote, T: 1
-002063 VOTE S0 C0 ask for vote, T: 1
-002063 VOTE S3 C0 ask for vote, T: 1
-002075 VOTE S0 -> S2 vote true, from T: 0 to CT: 1
-002077 VOTE S6 -> S2 vote true, from T: 0 to CT: 1
-002079 VOTE S4 -> S2 vote true, from T: 0 to CT: 1
-002077 VOTE S1 -> S2 vote true, from T: 0 to CT: 1
-002082 VOTE S5 -> S2 vote true, from T: 0 to CT: 1
-002083 VOTE S3 -> S2 vote true, from T: 0 to CT: 1
-002083 LEAD S2 convert to leader at T: 1
-002085 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-002085 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-002086 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-002086 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-002087 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-002087 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-002112 TIMR S3 not leader, election timeout...
-002877 TIMR S6 not leader, election timeout...
-002888 TIMR S1 not leader, election timeout...
-003093 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-003094 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-003094 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-003093 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-003094 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-003094 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-003774 TIMR S4 not leader, election timeout...
-004099 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-004100 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-004101 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-004102 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-004102 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-004106 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-004228 TIMR S5 not leader, election timeout...
-004781 TIMR S0 not leader, election timeout...
-005105 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-005105 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-005106 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-005107 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-005108 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-005114 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-005207 LOG1 S0 is in 0 state
-005208 LOG1 S1 is in 0 state
-005208 LOG1 S2 is in 2 state
-005208 LOG1 S3 is in 0 state
-005208 LOG1 S4 is in 0 state
-005208 LOG1 S5 is in 0 state
-005208 LOG1 S6 is in 0 state
-005209 LEAD S1 abandoned leader...
-005209 LEAD S4 abandoned leader...
-005209 LEAD S2 abandoned leader...
-006112 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-006112 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-006113 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-006113 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-006112 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-006112 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-006114 TIMR S3 not leader, election timeout...
-006458 TIMR S6 not leader, election timeout...
-006573 TIMR S4 not leader, election timeout...
-006906 TIMR S1 not leader, election timeout...
-007122 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-007123 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-007124 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-007122 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-007125 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-007123 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-008128 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-008129 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-008129 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-008129 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-008129 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-008129 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-008161 TIMR S5 not leader, election timeout...
-008653 TIMR S6 not leader, election timeout...
-008653 TIMR S6 convert to candidate, calling election T: 1
-008653 VOTE S5 C0 ask for vote, T: 2
-008654 VOTE S2 C0 ask for vote, T: 2
-008654 VOTE S3 C0 ask for vote, T: 2
-008654 VOTE S1 C0 ask for vote, T: 2
-008654 VOTE S0 C0 ask for vote, T: 2
-008655 VOTE S5 -> S6 vote true, from T: 1 to CT: 2
-008655 VOTE S3 -> S6 vote true, from T: 1 to CT: 2
-008655 VOTE S0 -> S6 vote true, from T: 1 to CT: 2
-008656 VOTE S4 C0 ask for vote, T: 2
-008656 LEAD S6 convert to leader at T: 2
-008656 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-008656 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-008656 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-008657 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-008657 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-008656 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-008960 TIMR S4 not leader, election timeout...
-008960 TIMR S4 convert to candidate, calling election T: 1
-008960 VOTE S6 C0 ask for vote, T: 2
-008960 VOTE S0 C0 ask for vote, T: 2
-008961 VOTE S3 C0 ask for vote, T: 2
-008961 VOTE S2 C0 ask for vote, T: 2
-008961 VOTE S5 C0 ask for vote, T: 2
-008960 VOTE S1 C0 ask for vote, T: 2
-009133 TIMR S3 not leader, election timeout...
-009134 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-009134 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-009134 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-009134 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-009134 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-009135 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-009447 TIMR S1 not leader, election timeout...
-009447 TIMR S1 convert to candidate, calling election T: 1
-009447 VOTE S6 C0 ask for vote, T: 2
-009447 VOTE S3 C0 ask for vote, T: 2
-009447 VOTE S0 C0 ask for vote, T: 2
-009448 VOTE S2 C0 ask for vote, T: 2
-009448 VOTE S4 C0 ask for vote, T: 2
-009448 VOTE S5 C0 ask for vote, T: 2
-009569 TIMR S0 not leader, election timeout...
-009662 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-009662 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-009662 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-009663 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-009663 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-009664 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-010135 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-010135 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-010135 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-010135 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-010135 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-010135 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-010478 LOG1 S0 is in 0 state
-010478 LOG1 S3 is in 0 state
-010478 LOG1 S5 is in 0 state
-010479 LOG1 S6 is in 2 state
-010479 LEAD S6 abandoned leader...
-010479 LEAD S4 abandoned leader...
-010479 LEAD S3 abandoned leader...
-010670 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-010671 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-010671 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-010671 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-010671 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-010671 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-011145 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-011145 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-011146 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-011146 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-011146 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-011147 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-011147 TIMR S2 not leader, election timeout...
-011671 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-011671 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-011671 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-011671 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-011671 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-011671 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-012054 TIMR S0 not leader, election timeout...
-012268 TIMR S3 not leader, election timeout...
-012681 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-012681 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-012682 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-012683 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-012681 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-012681 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-013055 TIMR S5 not leader, election timeout...
-013066 TIMR S4 not leader, election timeout...
-013066 TIMR S4 convert to candidate, calling election T: 2
-013067 VOTE S6 C0 ask for vote, T: 3
-013067 VOTE S0 C0 ask for vote, T: 3
-013066 VOTE S1 C0 ask for vote, T: 3
-013067 VOTE S3 C0 ask for vote, T: 3
-013068 VOTE S5 C0 ask for vote, T: 3
-013068 VOTE S2 C0 ask for vote, T: 3
-013431 TIMR S1 not leader, election timeout...
-013432 TIMR S1 convert to candidate, calling election T: 2
-013432 VOTE S6 C0 ask for vote, T: 3
-013432 VOTE S3 C0 ask for vote, T: 3
-013433 VOTE S4 C0 ask for vote, T: 3
-013433 VOTE S2 C0 ask for vote, T: 3
-013433 VOTE S5 C0 ask for vote, T: 3
-013434 VOTE S5 -> S1 vote true, from T: 2 to CT: 3
-013434 VOTE S2 -> S1 vote true, from T: 1 to CT: 3
-013433 VOTE S0 C0 ask for vote, T: 3
-013435 VOTE S0 -> S1 vote true, from T: 2 to CT: 3
-013435 LEAD S1 convert to leader at T: 3
-013436 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-013436 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-013437 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-013437 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-013438 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-013436 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-013689 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-013693 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-013694 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-013695 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-013695 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-013696 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-014572 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-014572 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-014574 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-014575 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-014575 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-014576 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-014773 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-014774 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-014774 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-014775 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-014775 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-014775 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-014879 TIMR S2 not leader, election timeout...
-015486 LOG1 S0 is in 0 state
-015486 LOG1 S1 is in 2 state
-015486 LOG1 S2 is in 0 state
-015486 LOG1 S5 is in 0 state
-015486 LEAD S2 abandoned leader...
-015486 LEAD S4 abandoned leader...
-015486 LEAD S6 abandoned leader...
-015587 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-015588 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-015590 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-015590 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-015591 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-015591 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-015789 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-015789 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-015790 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-015790 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-015790 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-015790 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-016293 TIMR S0 not leader, election timeout...
-016596 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-016597 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-016598 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-016599 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-016600 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-016600 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-016697 TIMR S5 not leader, election timeout...
-016798 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-016899 TIMR S4 not leader, election timeout...
-016899 TIMR S4 convert to candidate, calling election T: 3
-016899 VOTE S6 C0 ask for vote, T: 4
-016900 VOTE S0 C0 ask for vote, T: 4
-016900 VOTE S1 C0 ask for vote, T: 4
-016901 VOTE S2 C0 ask for vote, T: 4
-016901 VOTE S3 C0 ask for vote, T: 4
-016902 VOTE S5 C0 ask for vote, T: 4
-016999 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-017000 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-017001 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-017001 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-017002 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-017403 TIMR S3 not leader, election timeout...
-017604 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-017806 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-017807 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-017808 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-017809 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-017810 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-017810 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-017812 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-017812 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-017812 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-017812 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-017812 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-018411 TIMR S2 not leader, election timeout...
-018411 TIMR S2 convert to candidate, calling election T: 3
-018411 VOTE S6 C0 ask for vote, T: 4
-018612 VOTE S0 C0 ask for vote, T: 4
-018613 VOTE S1 C0 ask for vote, T: 4
-018614 VOTE S3 C0 ask for vote, T: 4
-018614 VOTE S4 C0 ask for vote, T: 4
-018614 VOTE S5 C0 ask for vote, T: 4
-018613 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-018814 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-018815 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-018816 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-018817 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-018818 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-018818 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-018819 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-018820 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-018820 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-018820 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-018820 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-019016 TIMR S5 not leader, election timeout...
-019419 TIMR S4 not leader, election timeout...
-019419 TIMR S4 convert to candidate, calling election T: 4
-019420 VOTE S6 C0 ask for vote, T: 5
-019420 VOTE S0 C0 ask for vote, T: 5
-019420 VOTE S1 C0 ask for vote, T: 5
-019421 VOTE S2 C0 ask for vote, T: 5
-019421 VOTE S3 C0 ask for vote, T: 5
-019421 VOTE S5 C0 ask for vote, T: 5
-019620 TIMR S3 not leader, election timeout...
-019621 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-019623 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-019623 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-019625 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-019625 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-019620 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-019822 TIMR S0 not leader, election timeout...
-019822 LOG1 S6 -> S5 send {PLI: 0, PLT: 0}
-020024 LOG1 S0 is in 0 state
-020024 LOG1 S1 is in 2 state
-020024 LOG1 S3 is in 0 state
-020025 LOG1 S5 is in 0 state
-020025 LOG1 S6 -> S4 send {PLI: 0, PLT: 0}
-020025 LEAD S4 abandoned leader...
-020025 LEAD S1 abandoned leader...
-020025 LEAD S2 abandoned leader...
-020024 LOG1 S6 -> S3 send {PLI: 0, PLT: 0}
-020027 TIMR S6 not leader, election timeout...
-020024 LOG1 S6 -> S0 send {PLI: 0, PLT: 0}
-020024 LOG1 S6 -> S2 send {PLI: 0, PLT: 0}
-020024 LOG1 S6 -> S1 send {PLI: 0, PLT: 0}
-020628 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-020830 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-020831 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-020831 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-020832 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-020832 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-021636 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-021837 TIMR S4 not leader, election timeout...
-021837 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-022039 TIMR S4 convert to candidate, calling election T: 5
-022039 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-022039 VOTE S6 C0 ask for vote, T: 6
-021837 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-022039 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-022040 VOTE S0 C0 ask for vote, T: 6
-022040 VOTE S1 C0 ask for vote, T: 6
-022041 VOTE S2 C0 ask for vote, T: 6
-022041 VOTE S3 C0 ask for vote, T: 6
-022041 VOTE S5 C0 ask for vote, T: 6
-021837 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-022644 TIMR S2 not leader, election timeout...
-022644 TIMR S2 convert to candidate, calling election T: 4
-022644 VOTE S6 C0 ask for vote, T: 5
-022744 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-022745 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-022746 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-022746 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-022747 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-022747 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-022845 TIMR S0 not leader, election timeout...
-022845 TIMR S0 convert to candidate, calling election T: 3
-022845 VOTE S6 C0 ask for vote, T: 4
-022847 VOTE S6 -> S0 vote true, from T: 2 to CT: 4
-022848 VOTE S0 C0 ask for vote, T: 5
-022848 VOTE S1 C0 ask for vote, T: 5
-022848 VOTE S3 C0 ask for vote, T: 5
-023046 VOTE S4 C0 ask for vote, T: 5
-023048 VOTE S5 C0 ask for vote, T: 5
-023048 VOTE S1 C0 ask for vote, T: 4
-023048 VOTE S2 C0 ask for vote, T: 4
-023049 VOTE S3 C0 ask for vote, T: 4
-023050 VOTE S3 -> S0 vote true, from T: 3 to CT: 4
-023051 VOTE S4 C0 ask for vote, T: 4
-023051 VOTE S5 C0 ask for vote, T: 4
-023052 VOTE S5 -> S0 vote true, from T: 3 to CT: 4
-023053 LEAD S0 convert to leader at T: 4
-023053 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-023055 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-023055 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-023056 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-023058 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-023058 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-023449 TIMR S5 not leader, election timeout...
-023753 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-023853 TIMR S3 not leader, election timeout...
-024054 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-024056 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-024057 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-024057 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-024058 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-024059 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-024054 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-024054 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-024054 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-024054 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-024055 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-024759 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-024960 TIMR S6 not leader, election timeout...
-024960 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-024960 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-024961 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-024961 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-024961 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-025060 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-025261 TIMR S4 not leader, election timeout...
-025262 TIMR S4 convert to candidate, calling election T: 6
-025262 VOTE S6 C0 ask for vote, T: 7
-025262 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-025263 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-025263 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-025265 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-025265 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-025267 VOTE S0 C0 ask for vote, T: 7
-025267 VOTE S1 C0 ask for vote, T: 7
-025267 VOTE S2 C0 ask for vote, T: 7
-025268 VOTE S3 C0 ask for vote, T: 7
-025268 VOTE S5 C0 ask for vote, T: 7
-025362 LOG1 S0 is in 2 state
-025363 LOG1 S3 is in 0 state
-025363 LOG1 S5 is in 0 state
-025363 LOG1 S6 is in 0 state
-025363 LEAD S1 abandoned leader...
-025363 LEAD S4 abandoned leader...
-025363 LEAD S6 abandoned leader...
-025664 TIMR S2 not leader, election timeout...
-025665 TIMR S2 convert to candidate, calling election T: 5
-025665 VOTE S6 C0 ask for vote, T: 6
-025866 VOTE S0 C0 ask for vote, T: 6
-025867 VOTE S0 -> S2 vote true, from T: 4 to CT: 6
-025868 VOTE S1 C0 ask for vote, T: 6
-025868 VOTE S3 C0 ask for vote, T: 6
-025869 VOTE S3 -> S2 vote true, from T: 4 to CT: 6
-025869 VOTE S4 C0 ask for vote, T: 6
-025870 VOTE S5 C0 ask for vote, T: 6
-025870 VOTE S5 -> S2 vote true, from T: 4 to CT: 6
-025871 LEAD S2 convert to leader at T: 6
-025871 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-025866 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-025872 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-025873 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-025873 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-025874 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-025874 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-026067 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-026772 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-026773 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-026773 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-026775 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-026776 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-026776 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-026772 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-026772 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-026772 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-026773 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-026974 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-027175 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-027175 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-027176 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-027176 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-027177 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-027175 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-027577 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-027580 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-027580 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-027581 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-027581 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-026974 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-027583 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-027583 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-027584 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-027585 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-027585 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-027586 TIMR S5 not leader, election timeout...
-027980 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-028081 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-028282 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-028383 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-028383 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-028584 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-028585 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-028585 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-028685 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-028686 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-028687 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-028688 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-028689 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-028690 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-028690 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-028692 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-028694 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-028694 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-028886 TIMR S3 not leader, election timeout...
-029088 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-029289 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-029692 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-029694 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-029694 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-029696 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-029696 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-029697 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-029697 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-029698 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-029700 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-029700 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-029793 TIMR S6 not leader, election timeout...
-029793 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-029794 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-029794 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-029794 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-029795 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-029795 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-030095 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-030195 LOG1 S0 is in 2 state
-030196 LOG1 S2 is in 2 state
-030196 LOG1 S3 is in 0 state
-030196 LOG1 S5 is in 0 state
---- FAIL: TestManyElections2A (3.02s)
-    config.go:452: term 6 has 2 (>1) leaders
-030799 TIMR S4 convert to candidate, calling election T: 7
-030799 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-030800 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-030799 VOTE S6 C0 ask for vote, T: 8
-031000 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-031202 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-031202 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-031202 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-031202 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-031403 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-031605 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-031605 VOTE S0 C0 ask for vote, T: 8
-031605 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-031605 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-031605 VOTE S1 C0 ask for vote, T: 8
-031606 VOTE S2 C0 ask for vote, T: 8
-031606 VOTE S3 C0 ask for vote, T: 8
-031606 VOTE S5 C0 ask for vote, T: 8
-031607 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-031607 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-031806 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-031806 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-032007 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-032007 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-032209 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-032007 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-032309 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-032309 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-032309 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-032612 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-032713 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-032713 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-032714 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-032713 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-032915 LOG1 S1 -> S6 send {PLI: 0, PLT: 0}
-032713 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-032916 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-032916 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-033117 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-033319 LOG1 S2 -> S6 send {PLI: 0, PLT: 0}
-033420 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-033521 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-033622 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-033623 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-033723 TIMR S6 convert to candidate, calling election T: 4
-033723 VOTE S5 C0 ask for vote, T: 5
-033725 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-033725 LOG1 S1 -> S3 send {PLI: 0, PLT: 0}
-033824 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-033925 LOG1 S1 -> S2 send {PLI: 0, PLT: 0}
-034025 LOG1 S1 -> S4 send {PLI: 0, PLT: 0}
-034025 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-034227 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-034025 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-034327 LOG1 S1 -> S5 send {PLI: 0, PLT: 0}
-034428 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-034529 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-034730 VOTE S0 C0 ask for vote, T: 5
-034731 LOG1 S2 -> S0 send {PLI: 0, PLT: 0}
-034730 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-034731 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-034932 LOG1 S2 -> S3 send {PLI: 0, PLT: 0}
-034932 LOG1 S2 -> S4 send {PLI: 0, PLT: 0}
-035133 VOTE S1 C0 ask for vote, T: 5
-035134 VOTE S2 C0 ask for vote, T: 5
-035134 VOTE S3 C0 ask for vote, T: 5
-035134 VOTE S4 C0 ask for vote, T: 5
-035134 LOG1 S1 -> S0 send {PLI: 0, PLT: 0}
-035234 LOG1 S2 -> S5 send {PLI: 0, PLT: 0}
-034731 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-035435 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-034932 LOG1 S2 -> S1 send {PLI: 0, PLT: 0}
-035637 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-035838 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-035939 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-036241 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-036442 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-036644 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-036846 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-037047 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-037248 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-037249 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-037852 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-037952 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-038154 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-038355 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-038557 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-038859 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-038859 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-039262 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-039771 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-039772 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-039976 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-039978 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-039980 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-040178 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-040380 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-040682 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-040884 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-041086 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-041191 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-041392 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-041594 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-041594 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-041795 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-041796 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-041997 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-042199 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-042299 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-042500 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-042501 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-042702 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-042904 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-043107 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-043108 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-043309 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-043511 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-043712 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-043914 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-044116 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-044318 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-044319 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-044620 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-044822 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-045023 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-045224 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-045425 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-045627 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-045728 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-045729 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-045930 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-046131 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-046333 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-046635 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-046736 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-046736 LOG1 S0 -> S1 send {PLI: 0, PLT: 0}
-046937 LOG1 S0 -> S2 send {PLI: 0, PLT: 0}
-047138 LOG1 S0 -> S3 send {PLI: 0, PLT: 0}
-047339 LOG1 S0 -> S4 send {PLI: 0, PLT: 0}
-047340 LOG1 S0 -> S5 send {PLI: 0, PLT: 0}
-047742 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-048750 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-049857 LOG1 S0 -> S6 send {PLI: 0, PLT: 0}
-FAIL
+000002 LEAD S0 disconnect...
+000003 CLNT S0 started at T:0 LLI:0
+000006 LEAD S1 disconnect...
+000006 CLNT S1 started at T:0 LLI:0
+000006 LEAD S2 disconnect...
+000006 CLNT S2 started at T:0 LLI:0
+000007 LEAD S0 reconnect...
+000007 LEAD S1 reconnect...
+000007 LEAD S2 reconnect...
+Test (2D): snapshots basic ...
+001901 TIMR S2 convert to candidate, calling election T: 0
+001904 VOTE S1 C0 ask for vote, T: 1
+001904 VOTE S0 C0 ask for vote, T: 1
+001906 VOTE S1 -> S2 vote true, from T: 0 to CT: 1
+001907 VOTE S0 -> S2 vote true, from T: 0 to CT: 1
+001908 LEAD S2 convert to leader at T: 1
+001908 ERRO S2 -> S1 LogInfo {IDX: 0, LENLOG: 1, LOG: {init server 0 0}}, NEXT: [1 1 1], SS: {0 0}
+001909 ERRO S2 -> S0 LogInfo {IDX: 0, LENLOG: 1, LOG: {init server 0 0}}, NEXT: [1 1 1], SS: {0 0}
+001910 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=1)
+001911 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=1)
+002026 CLNT S2 recv command, LENLOG: 1, T: 1
+002028 ERRO S2 -> S1 LogInfo {IDX: 0, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [1 1 1], SS: {0 0}
+002030 ERRO S2 -> S0 LogInfo {IDX: 0, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [1 1 1], SS: {0 0}
+002035 LOG2 S1 -> S2 append ok T: 1, LENLOG: 2
+002036 LOG2 S0 -> S2 append ok T: 1, LENLOG: 2
+002038 ERRO S2 -> S1 update success, NEXT: [1 2 1], MATCH: [0 1 0]
+002038 ERRO S2 get N: 1
+002039 ERRO S2 update commitIndex CI: 1
+002039 ERRO S2 -> S0 update success, NEXT: [2 2 1], MATCH: [1 1 0]
+002039 ERRO S2 get N: 1
+002039 ERRO S2, LENLOG: 2, LA: 0 apply msg {CI: 1} 
+002909 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+002912 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+002916 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+002917 CMIT S1 commit {CI: 1, LENLOG: 2}
+002917 ERRO S1, LENLOG: 2, LA: 0 apply msg {CI: 1} 
+002922 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+002922 CMIT S0 commit {CI: 1, LENLOG: 2}
+002923 ERRO S0, LENLOG: 2, LA: 0 apply msg {CI: 1} 
+003910 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+003911 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+003912 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+003913 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+004915 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+004916 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+004917 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+004918 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+005918 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+005919 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+005920 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+005921 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+006921 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+006922 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+006923 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+006924 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+007926 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+007928 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 2, LOG: {8067982224119751092 1 1}}, NEXT: [2 2 1], SS: {0 0}
+007929 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+007930 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+008491 LOG1 S0 is in 0 state
+008491 LOG1 S1 is in 0 state
+008491 LOG1 S2 is in 2 state
+008492 CLNT S2 recv command, LENLOG: 2, T: 1
+008492 CLNT S2 recv command, LENLOG: 3, T: 1
+008492 CLNT S2 recv command, LENLOG: 4, T: 1
+008493 CLNT S2 recv command, LENLOG: 5, T: 1
+008493 CLNT S2 recv command, LENLOG: 6, T: 1
+008494 CLNT S2 recv command, LENLOG: 7, T: 1
+008494 CLNT S2 recv command, LENLOG: 8, T: 1
+008495 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 2 1], SS: {0 0}
+008496 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 2 1], SS: {0 0}
+008497 ERRO S2 -> S1 LogInfo {IDX: 1, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 2 1], SS: {0 0}
+008498 LOG2 S1 -> S2 append ok T: 1, LENLOG: 9
+008498 LOG2 S1 -> S2 append ok T: 1, LENLOG: 9
+008499 ERRO S2 -> S1 update success, NEXT: [2 9 1], MATCH: [1 8 0]
+008499 ERRO S2 get N: 8
+008499 ERRO S2 update commitIndex CI: 8
+008499 ERRO S2, LENLOG: 9, LA: 1 apply msg {CI: 2} 
+008499 ERRO S2, LENLOG: 9, LA: 2 apply msg {CI: 3} 
+008499 ERRO S2, LENLOG: 9, LA: 3 apply msg {CI: 4} 
+008499 ERRO S2, LENLOG: 9, LA: 4 apply msg {CI: 5} 
+008499 ERRO S2, LENLOG: 9, LA: 5 apply msg {CI: 6} 
+008499 ERRO S2, LENLOG: 9, LA: 6 apply msg {CI: 7} 
+008499 LOG2 S1 -> S2 append ok T: 1, LENLOG: 9
+008500 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 9 1], SS: {0 0}
+008501 ERRO S2 -> S1 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 9 1], SS: {0 0}
+008501 ERRO S2 -> S1 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 9 1], SS: {0 0}
+008502 LOG2 S0 -> S2 append ok T: 1, LENLOG: 9
+008502 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008502 CMIT S1 commit {CI: 8, LENLOG: 9}
+008502 ERRO S2 -> S1 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 9 1], SS: {0 0}
+008503 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008503 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 9 1], SS: {0 0}
+008504 ERRO S2 -> S0 LogInfo {IDX: 1, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 9 1], SS: {0 0}
+008504 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008505 ERRO S2 -> S1 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [2 9 1], SS: {0 0}
+008502 CMIT S0 commit {CI: 8, LENLOG: 9}
+008506 LOG2 S0 -> S2 append ok T: 1, LENLOG: 9
+008506 ERRO S2 -> S0 update success, NEXT: [9 9 1], MATCH: [8 8 0]
+008507 ERRO S2 get N: 8
+008507 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008507 ERRO S0, LENLOG: 9, LA: 1 apply msg {CI: 2} 
+008507 ERRO S0, LENLOG: 9, LA: 2 apply msg {CI: 3} 
+008507 ERRO S0, LENLOG: 9, LA: 3 apply msg {CI: 4} 
+008507 ERRO S0, LENLOG: 9, LA: 4 apply msg {CI: 5} 
+008507 ERRO S0, LENLOG: 9, LA: 5 apply msg {CI: 6} 
+008507 ERRO S0, LENLOG: 9, LA: 6 apply msg {CI: 7} 
+008507 ERRO S2 -> S0 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [9 9 1], SS: {0 0}
+008507 LOG2 S0 -> S2 append ok T: 1, LENLOG: 9
+008507 ERRO S2 -> S0 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [9 9 1], SS: {0 0}
+008508 ERRO S0, LENLOG: 9, LA: 7 apply msg {CI: 8} 
+008508 ERRO S2 -> S0 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [9 9 1], SS: {0 0}
+008509 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008509 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008509 ERRO S1, LENLOG: 9, LA: 1 apply msg {CI: 2} 
+008509 ERRO S1, LENLOG: 9, LA: 2 apply msg {CI: 3} 
+008509 ERRO S1, LENLOG: 9, LA: 3 apply msg {CI: 4} 
+008509 ERRO S1, LENLOG: 9, LA: 4 apply msg {CI: 5} 
+008510 ERRO S1, LENLOG: 9, LA: 5 apply msg {CI: 6} 
+008510 ERRO S1, LENLOG: 9, LA: 6 apply msg {CI: 7} 
+008510 ERRO S1, LENLOG: 9, LA: 7 apply msg {CI: 8} 
+008510 ERRO S2, LENLOG: 9, LA: 7 apply msg {CI: 8} 
+008510 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008510 ERRO S2 -> S0 LogInfo {IDX: 8, LENLOG: 9, LOG: {8886381694185523159 1 8}}, NEXT: [9 9 1], SS: {0 0}
+008512 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+008698 CLNT S2 recv command, LENLOG: 9, T: 1
+008698 ERRO S2 -> S1 LogInfo {IDX: 8, LENLOG: 10, LOG: {8783814196054541391 1 9}}, NEXT: [9 9 1], SS: {0 0}
+008699 ERRO S2 -> S0 LogInfo {IDX: 8, LENLOG: 10, LOG: {8783814196054541391 1 9}}, NEXT: [9 9 1], SS: {0 0}
+008700 LOG2 S1 -> S2 append ok T: 1, LENLOG: 10
+008701 ERRO S2 -> S1 update success, NEXT: [9 10 1], MATCH: [8 9 0]
+008701 ERRO S2 get N: 9
+008701 ERRO S2 update commitIndex CI: 9
+008702 ERRO S2, LENLOG: 10, LA: 8 apply msg {CI: 9} 
+008702 LOG2 S0 -> S2 append ok T: 1, LENLOG: 10
+008702 SNAP S2 create snapshot LII:9, LENLOG: 1, T: 1
+008703 ERRO S2 -> S0 update success, NEXT: [10 10 1], MATCH: [9 9 0]
+008703 ERRO S2 get N: 9
+008933 ERRO S2 -> S1 LogInfo {IDX: 9, LENLOG: 1, LOG: {8783814196054541391 1 9}}, NEXT: [10 10 1], SS: {9 1}
+008934 ERRO S2 -> S0 LogInfo {IDX: 9, LENLOG: 1, LOG: {8783814196054541391 1 9}}, NEXT: [10 10 1], SS: {9 1}
+008935 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=10)
+008935 CMIT S1 commit {CI: 9, LENLOG: 10}
+008935 ERRO S1, LENLOG: 10, LA: 8 apply msg {CI: 9} 
+008936 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=10)
+008936 CMIT S0 commit {CI: 9, LENLOG: 10}
+008937 SNAP S1 create snapshot LII:9, LENLOG: 1, T: 1
+008937 ERRO S0, LENLOG: 10, LA: 8 apply msg {CI: 9} 
+008937 SNAP S0 create snapshot LII:9, LENLOG: 1, T: 1
+009106 CLNT S2 recv command, LENLOG: 10, T: 1
+009106 CLNT S2 recv command, LENLOG: 11, T: 1
+009106 CLNT S2 recv command, LENLOG: 12, T: 1
+009107 CLNT S2 recv command, LENLOG: 13, T: 1
+009107 CLNT S2 recv command, LENLOG: 14, T: 1
+009107 CLNT S2 recv command, LENLOG: 15, T: 1
+009108 CLNT S2 recv command, LENLOG: 16, T: 1
+009108 CLNT S2 recv command, LENLOG: 17, T: 1
+009108 CLNT S2 recv command, LENLOG: 18, T: 1
+009109 CLNT S2 recv command, LENLOG: 19, T: 1
+009109 CLNT S2 recv command, LENLOG: 20, T: 1
+009109 ERRO S2 -> S1 LogInfo {IDX: 9, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [10 10 1], SS: {9 1}
+009110 ERRO S2 -> S1 LogInfo {IDX: 9, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [10 10 1], SS: {9 1}
+009111 ERRO S2 -> S1 LogInfo {IDX: 9, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [10 10 1], SS: {9 1}
+009112 LOG2 S1 -> S2 append ok T: 1, LENLOG: 12
+009112 LOG2 S1 -> S2 append ok T: 1, LENLOG: 12
+009113 ERRO S2 -> S1 update success, NEXT: [10 21 1], MATCH: [9 20 0]
+009113 ERRO S2 get N: 20
+009113 ERRO S2 update commitIndex CI: 20
+009113 ERRO S2, LENLOG: 12, LA: 9 apply msg {CI: 10} 
+009113 ERRO S2, LENLOG: 12, LA: 10 apply msg {CI: 11} 
+009113 ERRO S2, LENLOG: 12, LA: 11 apply msg {CI: 12} 
+009113 ERRO S2, LENLOG: 12, LA: 12 apply msg {CI: 13} 
+009113 ERRO S2, LENLOG: 12, LA: 13 apply msg {CI: 14} 
+009113 ERRO S2, LENLOG: 12, LA: 14 apply msg {CI: 15} 
+009113 ERRO S2, LENLOG: 12, LA: 15 apply msg {CI: 16} 
+009114 LOG2 S1 -> S2 append ok T: 1, LENLOG: 12
+009114 ERRO S2 -> S0 LogInfo {IDX: 9, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [10 21 1], SS: {9 1}
+009115 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [10 21 1], SS: {9 1}
+009116 LOG2 S0 -> S2 append ok T: 1, LENLOG: 12
+009116 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [10 21 1], SS: {9 1}
+009116 CMIT S0 commit {CI: 20, LENLOG: 12}
+009116 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=12)
+009116 CMIT S1 commit {CI: 20, LENLOG: 12}
+009117 ERRO S2 -> S0 update success, NEXT: [21 21 1], MATCH: [20 20 0]
+009117 ERRO S2 get N: 20
+009117 ERRO S0, LENLOG: 12, LA: 9 apply msg {CI: 10} 
+009117 ERRO S0, LENLOG: 12, LA: 10 apply msg {CI: 11} 
+009117 ERRO S1, LENLOG: 12, LA: 9 apply msg {CI: 10} 
+009118 ERRO S1, LENLOG: 12, LA: 10 apply msg {CI: 11} 
+009117 ERRO S0, LENLOG: 12, LA: 11 apply msg {CI: 12} 
+009118 ERRO S1, LENLOG: 12, LA: 11 apply msg {CI: 12} 
+009118 ERRO S1, LENLOG: 12, LA: 12 apply msg {CI: 13} 
+009118 ERRO S0, LENLOG: 12, LA: 12 apply msg {CI: 13} 
+009118 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009118 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009118 ERRO S0, LENLOG: 12, LA: 13 apply msg {CI: 14} 
+009118 ERRO S0, LENLOG: 12, LA: 14 apply msg {CI: 15} 
+009118 ERRO S0, LENLOG: 12, LA: 15 apply msg {CI: 16} 
+009119 ERRO S0, LENLOG: 12, LA: 16 apply msg {CI: 17} 
+009119 ERRO S0, LENLOG: 12, LA: 17 apply msg {CI: 18} 
+009119 ERRO S0, LENLOG: 12, LA: 18 apply msg {CI: 19} 
+009120 SNAP S0 create snapshot LII:19, LENLOG: 2, T: 1
+009120 ERRO S0, LENLOG: 2, LA: 19 apply msg {CI: 20} 
+009118 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=12)
+009120 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009120 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009121 ERRO S1, LENLOG: 12, LA: 13 apply msg {CI: 14} 
+009121 ERRO S1, LENLOG: 12, LA: 14 apply msg {CI: 15} 
+009121 ERRO S1, LENLOG: 12, LA: 15 apply msg {CI: 16} 
+009121 ERRO S1, LENLOG: 12, LA: 16 apply msg {CI: 17} 
+009121 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009121 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=12)
+009121 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009121 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009122 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=12)
+009122 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009122 ERRO S1, LENLOG: 12, LA: 17 apply msg {CI: 18} 
+009122 ERRO S1, LENLOG: 12, LA: 18 apply msg {CI: 19} 
+009123 SNAP S1 create snapshot LII:19, LENLOG: 2, T: 1
+009123 ERRO S1, LENLOG: 2, LA: 19 apply msg {CI: 20} 
+009122 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009124 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009125 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009125 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009126 ERRO S2, LENLOG: 12, LA: 16 apply msg {CI: 17} 
+009126 ERRO S2, LENLOG: 12, LA: 17 apply msg {CI: 18} 
+009126 ERRO S2, LENLOG: 12, LA: 18 apply msg {CI: 19} 
+009126 ERRO S2, LENLOG: 12, LA: 19 apply msg {CI: 20} 
+009126 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009127 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 12, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {9 1}
+009127 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009128 SNAP S2 create snapshot LII:19, LENLOG: 2, T: 1
+009128 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 2, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {19 1}
+009128 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009129 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 2, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {19 1}
+009130 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009130 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 2, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {19 1}
+009131 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009131 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 2, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {19 1}
+009132 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 2, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {19 1}
+009132 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009133 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009133 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 2, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {19 1}
+009133 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009133 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 2, LOG: {8797904241781800232 1 20}}, NEXT: [21 21 1], SS: {19 1}
+009135 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009135 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=2)
+009313 CLNT S2 recv command, LENLOG: 21, T: 1
+009314 CLNT S2 recv command, LENLOG: 22, T: 1
+009314 CLNT S2 recv command, LENLOG: 23, T: 1
+009314 CLNT S2 recv command, LENLOG: 24, T: 1
+009314 CLNT S2 recv command, LENLOG: 25, T: 1
+009315 CLNT S2 recv command, LENLOG: 26, T: 1
+009315 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [21 21 1], SS: {19 1}
+009316 ERRO S2 -> S0 LogInfo {IDX: 20, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [21 21 1], SS: {19 1}
+009317 ERRO S2 -> S1 LogInfo {IDX: 20, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [21 21 1], SS: {19 1}
+009317 LOG2 S1 -> S2 append ok T: 1, LENLOG: 8
+009318 LOG2 S0 -> S2 append ok T: 1, LENLOG: 8
+009319 ERRO S2 -> S1 update success, NEXT: [21 27 1], MATCH: [20 26 0]
+009319 ERRO S2 get N: 26
+009319 ERRO S2 update commitIndex CI: 26
+009319 ERRO S2, LENLOG: 8, LA: 20 apply msg {CI: 21} 
+009319 ERRO S2, LENLOG: 8, LA: 21 apply msg {CI: 22} 
+009319 ERRO S2, LENLOG: 8, LA: 22 apply msg {CI: 23} 
+009319 ERRO S2, LENLOG: 8, LA: 23 apply msg {CI: 24} 
+009320 ERRO S2 -> S0 update success, NEXT: [27 27 1], MATCH: [26 26 0]
+009320 ERRO S2 get N: 26
+009320 LOG2 S1 -> S2 append ok T: 1, LENLOG: 8
+009320 ERRO S2 -> S1 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009322 ERRO S2 -> S0 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009322 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009322 CMIT S1 commit {CI: 26, LENLOG: 8}
+009322 ERRO S2 -> S0 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009323 ERRO S1, LENLOG: 8, LA: 20 apply msg {CI: 21} 
+009323 ERRO S1, LENLOG: 8, LA: 21 apply msg {CI: 22} 
+009323 ERRO S1, LENLOG: 8, LA: 22 apply msg {CI: 23} 
+009323 ERRO S1, LENLOG: 8, LA: 23 apply msg {CI: 24} 
+009323 ERRO S1, LENLOG: 8, LA: 24 apply msg {CI: 25} 
+009323 ERRO S1, LENLOG: 8, LA: 25 apply msg {CI: 26} 
+009323 ERRO S2 -> S1 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009324 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009324 CMIT S0 commit {CI: 26, LENLOG: 8}
+009324 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009324 ERRO S0, LENLOG: 8, LA: 20 apply msg {CI: 21} 
+009325 ERRO S0, LENLOG: 8, LA: 21 apply msg {CI: 22} 
+009325 ERRO S0, LENLOG: 8, LA: 22 apply msg {CI: 23} 
+009325 ERRO S0, LENLOG: 8, LA: 23 apply msg {CI: 24} 
+009325 ERRO S0, LENLOG: 8, LA: 24 apply msg {CI: 25} 
+009325 ERRO S0, LENLOG: 8, LA: 25 apply msg {CI: 26} 
+009325 ERRO S2 -> S1 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009325 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009325 ERRO S2, LENLOG: 8, LA: 24 apply msg {CI: 25} 
+009325 ERRO S2, LENLOG: 8, LA: 25 apply msg {CI: 26} 
+009325 ERRO S2 -> S1 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009326 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009326 ERRO S2 -> S0 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009327 ERRO S2 -> S0 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009328 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009328 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009328 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009329 ERRO S2 -> S0 LogInfo {IDX: 26, LENLOG: 8, LOG: {4983053963154822573 1 26}}, NEXT: [27 27 1], SS: {19 1}
+009330 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+009516 CLNT S2 recv command, LENLOG: 27, T: 1
+009517 ERRO S2 -> S1 LogInfo {IDX: 26, LENLOG: 9, LOG: {178764408803342163 1 27}}, NEXT: [27 27 1], SS: {19 1}
+009518 ERRO S2 -> S0 LogInfo {IDX: 26, LENLOG: 9, LOG: {178764408803342163 1 27}}, NEXT: [27 27 1], SS: {19 1}
+009520 LOG2 S1 -> S2 append ok T: 1, LENLOG: 9
+009520 LOG2 S0 -> S2 append ok T: 1, LENLOG: 9
+009521 ERRO S2 -> S0 update success, NEXT: [28 27 1], MATCH: [27 26 0]
+009521 ERRO S2 get N: 27
+009521 ERRO S2 update commitIndex CI: 27
+009521 ERRO S2 -> S1 update success, NEXT: [28 28 1], MATCH: [27 27 0]
+009521 ERRO S2 get N: 27
+009521 ERRO S2, LENLOG: 9, LA: 26 apply msg {CI: 27} 
+009944 ERRO S2 -> S0 LogInfo {IDX: 27, LENLOG: 9, LOG: {178764408803342163 1 27}}, NEXT: [28 28 1], SS: {19 1}
+009946 ERRO S2 -> S1 LogInfo {IDX: 27, LENLOG: 9, LOG: {178764408803342163 1 27}}, NEXT: [28 28 1], SS: {19 1}
+009946 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+009947 CMIT S0 commit {CI: 27, LENLOG: 9}
+009947 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=9)
+009947 ERRO S0, LENLOG: 9, LA: 26 apply msg {CI: 27} 
+009947 CMIT S1 commit {CI: 27, LENLOG: 9}
+009948 ERRO S1, LENLOG: 9, LA: 26 apply msg {CI: 27} 
+010128 CLNT S2 recv command, LENLOG: 28, T: 1
+010128 CLNT S2 recv command, LENLOG: 29, T: 1
+010129 CLNT S2 recv command, LENLOG: 30, T: 1
+010129 CLNT S2 recv command, LENLOG: 31, T: 1
+010129 CLNT S2 recv command, LENLOG: 32, T: 1
+010130 CLNT S2 recv command, LENLOG: 33, T: 1
+010130 CLNT S2 recv command, LENLOG: 34, T: 1
+010130 CLNT S2 recv command, LENLOG: 35, T: 1
+010130 CLNT S2 recv command, LENLOG: 36, T: 1
+010130 ERRO S2 -> S1 LogInfo {IDX: 27, LENLOG: 18, LOG: {1575931874314599093 1 36}}, NEXT: [28 28 1], SS: {19 1}
+010131 ERRO S2 -> S1 LogInfo {IDX: 27, LENLOG: 18, LOG: {1575931874314599093 1 36}}, NEXT: [28 28 1], SS: {19 1}
+010131 ERRO S2 -> S0 LogInfo {IDX: 27, LENLOG: 18, LOG: {1575931874314599093 1 36}}, NEXT: [28 28 1], SS: {19 1}
+010132 LOG2 S1 -> S2 append ok T: 1, LENLOG: 18
+010133 LOG2 S1 -> S2 append ok T: 1, LENLOG: 18
+010133 ERRO S2 -> S1 update success, NEXT: [28 37 1], MATCH: [27 36 0]
+010133 ERRO S2 get N: 36
+010133 ERRO S2 update commitIndex CI: 36
+010133 ERRO S2, LENLOG: 18, LA: 27 apply msg {CI: 28} 
+010133 ERRO S2, LENLOG: 18, LA: 28 apply msg {CI: 29} 
+010134 SNAP S2 create snapshot LII:29, LENLOG: 8, T: 1
+010134 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [28 37 1], SS: {29 1}
+010134 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010134 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [28 37 1], SS: {29 1}
+010135 ERRO S2 -> S0 update success, NEXT: [37 37 1], MATCH: [36 36 0]
+010135 ERRO S2 get N: 36
+010135 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010135 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010135 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010136 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010136 CMIT S0 commit {CI: 36, LENLOG: 18}
+010136 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010135 CMIT S1 commit {CI: 36, LENLOG: 18}
+010137 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010137 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010137 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010138 ERRO S2, LENLOG: 8, LA: 29 apply msg {CI: 30} 
+010138 ERRO S2, LENLOG: 8, LA: 30 apply msg {CI: 31} 
+010138 ERRO S2, LENLOG: 8, LA: 31 apply msg {CI: 32} 
+010138 ERRO S2, LENLOG: 8, LA: 32 apply msg {CI: 33} 
+010138 ERRO S0, LENLOG: 18, LA: 27 apply msg {CI: 28} 
+010138 ERRO S0, LENLOG: 18, LA: 28 apply msg {CI: 29} 
+010138 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010138 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010139 SNAP S0 create snapshot LII:29, LENLOG: 8, T: 1
+010139 ERRO S0, LENLOG: 8, LA: 29 apply msg {CI: 30} 
+010139 ERRO S0, LENLOG: 8, LA: 30 apply msg {CI: 31} 
+010139 ERRO S0, LENLOG: 8, LA: 31 apply msg {CI: 32} 
+010139 ERRO S0, LENLOG: 8, LA: 32 apply msg {CI: 33} 
+010139 ERRO S0, LENLOG: 8, LA: 33 apply msg {CI: 34} 
+010139 ERRO S0, LENLOG: 8, LA: 34 apply msg {CI: 35} 
+010139 ERRO S0, LENLOG: 8, LA: 35 apply msg {CI: 36} 
+010139 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010140 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010138 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010140 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010140 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010140 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010141 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010141 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010141 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010142 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010142 ERRO S1, LENLOG: 18, LA: 27 apply msg {CI: 28} 
+010142 ERRO S1, LENLOG: 18, LA: 28 apply msg {CI: 29} 
+010142 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010143 SNAP S1 create snapshot LII:29, LENLOG: 8, T: 1
+010143 ERRO S1, LENLOG: 8, LA: 29 apply msg {CI: 30} 
+010143 ERRO S1, LENLOG: 8, LA: 30 apply msg {CI: 31} 
+010143 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010143 ERRO S1, LENLOG: 8, LA: 31 apply msg {CI: 32} 
+010143 ERRO S1, LENLOG: 8, LA: 32 apply msg {CI: 33} 
+010143 ERRO S1, LENLOG: 8, LA: 33 apply msg {CI: 34} 
+010143 ERRO S1, LENLOG: 8, LA: 34 apply msg {CI: 35} 
+010143 ERRO S1, LENLOG: 8, LA: 35 apply msg {CI: 36} 
+010143 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010144 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010144 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010144 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010144 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 8, LOG: {1575931874314599093 1 36}}, NEXT: [37 37 1], SS: {29 1}
+010145 ERRO S2, LENLOG: 8, LA: 33 apply msg {CI: 34} 
+010146 ERRO S2, LENLOG: 8, LA: 34 apply msg {CI: 35} 
+010146 ERRO S2, LENLOG: 8, LA: 35 apply msg {CI: 36} 
+010146 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010338 CLNT S2 recv command, LENLOG: 37, T: 1
+010338 CLNT S2 recv command, LENLOG: 38, T: 1
+010339 CLNT S2 recv command, LENLOG: 39, T: 1
+010339 CLNT S2 recv command, LENLOG: 40, T: 1
+010340 CLNT S2 recv command, LENLOG: 41, T: 1
+010340 CLNT S2 recv command, LENLOG: 42, T: 1
+010340 CLNT S2 recv command, LENLOG: 43, T: 1
+010341 CLNT S2 recv command, LENLOG: 44, T: 1
+010341 CLNT S2 recv command, LENLOG: 45, T: 1
+010342 CLNT S2 recv command, LENLOG: 46, T: 1
+010342 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 37 1], SS: {29 1}
+010343 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 37 1], SS: {29 1}
+010344 LOG2 S1 -> S2 append ok T: 1, LENLOG: 18
+010344 ERRO S2 -> S1 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 37 1], SS: {29 1}
+010345 ERRO S2 -> S1 update success, NEXT: [37 47 1], MATCH: [36 46 0]
+010345 ERRO S2 get N: 46
+010345 ERRO S2 update commitIndex CI: 46
+010345 ERRO S2, LENLOG: 18, LA: 36 apply msg {CI: 37} 
+010345 ERRO S2, LENLOG: 18, LA: 37 apply msg {CI: 38} 
+010345 ERRO S2, LENLOG: 18, LA: 38 apply msg {CI: 39} 
+010345 ERRO S2, LENLOG: 18, LA: 39 apply msg {CI: 40} 
+010345 LOG2 S1 -> S2 append ok T: 1, LENLOG: 18
+010346 LOG2 S1 -> S2 append ok T: 1, LENLOG: 18
+010346 ERRO S2 -> S1 LogInfo {IDX: 46, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010347 ERRO S2 -> S1 LogInfo {IDX: 46, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010347 ERRO S2 -> S1 LogInfo {IDX: 46, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010352 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010352 CMIT S1 commit {CI: 46, LENLOG: 18}
+010357 ERRO S2 -> S1 LogInfo {IDX: 46, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010358 ERRO S2 -> S1 LogInfo {IDX: 46, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010358 ERRO S2 -> S1 LogInfo {IDX: 46, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010359 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010353 ERRO S1, LENLOG: 18, LA: 36 apply msg {CI: 37} 
+010359 ERRO S1, LENLOG: 18, LA: 37 apply msg {CI: 38} 
+010359 ERRO S1, LENLOG: 18, LA: 38 apply msg {CI: 39} 
+010359 ERRO S1, LENLOG: 18, LA: 39 apply msg {CI: 40} 
+010359 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010359 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010360 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010360 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010360 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010360 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010360 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010360 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010361 ERRO S2 -> S0 LogInfo {IDX: 36, LENLOG: 18, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {29 1}
+010361 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010361 ERRO S2 -> S0 broadcast snapshot {IDX: 36, LENLOG: 8, LOG: {5042222019894610050 1 46}}, NEXT: [37 47 1], SS: {39 1}
+010361 SNAP S2 C46 send snapshot, T: 1
+010361 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010361 CMIT S0 commit {CI: 46, LENLOG: 18}
+010362 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010362 ERRO S2 -> S0 update success, NEXT: [47 47 1], MATCH: [46 46 0]
+010362 ERRO S2 get N: 46
+010362 SNAP S0 start install snapshot...
+010362 ERRO S0, LENLOG: 18, LA: 36 apply msg {CI: 37} 
+010362 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010363 ERRO S2 -> S1 LogInfo {IDX: 46, LENLOG: 8, LOG: {5042222019894610050 1 46}}, NEXT: [47 47 1], SS: {39 1}
+010362 ERRO S0, LENLOG: 18, LA: 37 apply msg {CI: 38} 
+010363 ERRO S0, LENLOG: 18, LA: 38 apply msg {CI: 39} 
+010364 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010364 LOG1 S1 -> S2 recv heartbeat
+%!(EXTRA int=1, int=8)
+010365 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010365 ERRO S2 -> S0 LogInfo {IDX: 46, LENLOG: 8, LOG: {5042222019894610050 1 46}}, NEXT: [47 47 1], SS: {39 1}
+010366 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010360 SNAP S1 create snapshot LII:39, LENLOG: 8, T: 1
+010366 ERRO S1, LENLOG: 8, LA: 40 apply msg {CI: 41} 
+010366 LOG1 S0 -> S2 recv heartbeat
+%!(EXTRA int=1, int=18)
+010366 ERRO S1, LENLOG: 8, LA: 41 apply msg {CI: 42} 
+010367 ERRO S1, LENLOG: 8, LA: 42 apply msg {CI: 43} 
+010367 ERRO S1, LENLOG: 8, LA: 43 apply msg {CI: 44} 
+010367 ERRO S1, LENLOG: 8, LA: 44 apply msg {CI: 45} 
+010367 ERRO S1, LENLOG: 8, LA: 45 apply msg {CI: 46} 
+010367 SNAP S2 create snapshot LII:39, LENLOG: 8, T: 1
+010367 ERRO S2, LENLOG: 8, LA: 40 apply msg {CI: 41} 
+010367 ERRO S2, LENLOG: 8, LA: 41 apply msg {CI: 42} 
+010367 ERRO S2, LENLOG: 8, LA: 42 apply msg {CI: 43} 
+010367 ERRO S2, LENLOG: 8, LA: 43 apply msg {CI: 44} 
+010367 ERRO S2, LENLOG: 8, LA: 44 apply msg {CI: 45} 
+010367 ERRO S2, LENLOG: 8, LA: 45 apply msg {CI: 46} 
+010367 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010368 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010368 LOG2 S0 -> S2 append ok T: 1, LENLOG: 18
+010368 SNAP S0 partial snapshot, firstLogIndex: 29, lastLogIndex: 46, SSLastLogIndex: 39, drop...
+010369 SNAP S0 snapshot too small, FIRLOGIDX: 39, IDX: 39
+010369 SNAP S0 ingested snapshot, SSIDX: 39
+010369 ERRO S0, LENLOG: 8, LA: 39 apply msg {CI: 40} 
+010369 VOTE S0 append success, snapshot interrupt...
+010370 SNAP S0 ingestSnap: snapshot doesn't match m.SnapshotIndex, INDEX: 39, LII: 29
+010370 SNAP S0 C46 install snapshot, IDX: 39 T: 1, start from 39 to 46
+apply error: server 0 snapshot doesn't match m.SnapshotIndex
 exit status 1
-FAIL	6.824/raft	5.119s
+FAIL	6.824/raft	1.041s

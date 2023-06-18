@@ -200,6 +200,9 @@ func (cfg *config) ingestSnap(i int, snapshot []byte, index int) string {
 		return "snapshot Decode() error"
 	}
 	if index != -1 && index != lastIncludedIndex {
+		DebugLog(dSnap, "S%d ingestSnap: snapshot doesn't match m.SnapshotIndex, INDEX: %d, LII: %d\n",
+			i, index, lastIncludedIndex)
+
 		err := fmt.Sprintf("server %v snapshot doesn't match m.SnapshotIndex", i)
 		return err
 	}
@@ -227,6 +230,7 @@ func (cfg *config) applierSnap(i int, applyCh chan ApplyMsg) {
 		if m.SnapshotValid {
 			if rf.CondInstallSnapshot(m.SnapshotTerm, m.SnapshotIndex, m.Snapshot) {
 				cfg.mu.Lock()
+				DebugLog(dSnap, "S%d ingested snapshot, SSIDX: %d\n", i, m.SnapshotIndex)
 				err_msg = cfg.ingestSnap(i, m.Snapshot, m.SnapshotIndex)
 				cfg.mu.Unlock()
 			}
