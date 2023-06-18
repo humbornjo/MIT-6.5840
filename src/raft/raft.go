@@ -169,17 +169,8 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	}
 
 	reply.Success = true
-	// switch rf.state {
-	// case Leader:
-	// case Candidate:
 	rf.state = Follower
-	// DebugLog(dVote, "S%d convert to follower...\n", rf.me)
-	// rf.votedFor = -1
-	// case Follower:
 	rf.isTimeout = false
-	// default:
-	// 	break
-	// }
 
 	// 最后一层判断，如果leaderCommit大于自己的commitIndex，更新自己的commitIndex
 	if args.LeaderCommit > rf.commitIndex {
@@ -193,22 +184,6 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 
 func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *AppendEntriesReply) bool {
 	ok := rf.peers[server].Call("Raft.AppendEntries", args, reply)
-
-	// USELESS - Lock
-	// rf.mu.Lock()
-	// defer rf.mu.Unlock()
-	// if ok {
-	// 	if len(args.Entries) == 0 {
-	// 		DebugLog(dLog, "S%d -> S%d T: %d, send heartbeat\n", rf.me, server, rf.currTerm)
-	// 	} else {
-	// 		DebugLog(dLog, "S%d -> S%d T: %d, send {PLI: %d, PLT: %d, CI: %d, BEGINLOGIDX: %d, ENDLOGIDX: %d, LOG: %v}\n",
-	// 			rf.me, server, rf.currTerm, args.PrevLogIndex, args.PrevLogTerm,
-	// 			args.LeaderCommit, args.Entries[0].Index, args.Entries[len(args.Entries)-1].Index,
-	// 			args.Entries)
-	// 	}
-	// } else {
-	// 	DebugLog(dError, "S%d -> S%d T: %d, fail send {PLI: %d, PLT: %d, CI: %d}\n", rf.me, server, rf.currTerm, args.PrevLogIndex, args.PrevLogTerm, args.LeaderCommit)
-	// }
 	return ok
 }
 
@@ -449,7 +424,6 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapsho
 }
 
 func (rf *Raft) sendInstallSnapshot(server int, args *InstallSnapshotArgs, reply *InstallSnapshotReply) bool {
-	DebugLog(dSnap, "S%d -> S%d send snapshot, T: %d", rf.me, server, args.Term)
 	ok := rf.peers[server].Call("Raft.InstallSnapshot", args, reply)
 	return ok
 }
@@ -478,7 +452,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 
 	// 2A
 	// Reply false if term < currentTerm
-	// 2B TODO
+	// 2B
 	// respond according to args.lastLogIndex and args.lastLogTerm
 	// refer to last para in 5.4.1
 	rf.mu.Lock()
@@ -726,8 +700,6 @@ func (rf *Raft) broadcastAppendEntries() {
 				prevLogIndex, prevLogTerm := rf.LogInfoByIndex(rf.nextIndex[id] - 1 - rf.snapshot.LastIncludedIndex)
 				beginOfIndex := rf.nextIndex[id] - rf.snapshot.LastIncludedIndex
 				endOfIndex := rf.logEntries[len(rf.logEntries)-1].Index + 1
-				// DebugLog(dError, "S%d send to S%d, ENTRIES: %v\n", rf.me, id,
-				// 	rf.logEntries[beginOfIndex:])
 
 				args := AppendEntriesArgs{
 					rf.currTerm,                  // Term
@@ -761,7 +733,6 @@ func (rf *Raft) broadcastAppendEntries() {
 							rf.nextIndex[id] = max(1, rf.nextIndex[id]/2)
 							DebugLog(dError, "S%d -> S%d update failed, NEXT: %d\n", rf.me, id, rf.nextIndex[id])
 						}
-						// }
 					}
 				}
 			}
@@ -770,9 +741,6 @@ func (rf *Raft) broadcastAppendEntries() {
 }
 
 func (rf *Raft) updateCommitIndex() {
-	// rf.mu.Lock()
-	// defer rf.mu.Unlock()
-
 	var dupMatchIndex []int
 	dupMatchIndex = append(dupMatchIndex, rf.matchIndex...)
 	dupMatchIndex[rf.me] = rf.logEntries[len(rf.logEntries)-1].Index
@@ -788,10 +756,6 @@ func (rf *Raft) updateCommitIndex() {
 }
 
 func (rf *Raft) Apply() {
-	//Your code may have loops that repeatedly check for certain events.
-	//Don't have these loops execute continuously without pausing,
-	//since that will slow your implementation enough that it fails tests.
-	//Use Go's condition variables, or insert a time.Sleep(10 * time.Millisecond) in each loop iteration.
 	for !rf.killed() {
 		rf.mu.Lock()
 
@@ -830,7 +794,6 @@ func (rf *Raft) StartElection() {
 	rf.persist()
 	//本来应该reset ElectionTimeout的，由于并发执行，在外侧实现
 
-	// lastIndex := len(rf.logEntries) - 1
 	lastLogIndex, lastLogTerm := rf.LogInfoByIndex(len(rf.logEntries) - 1)
 	args := RequestVoteArgs{
 		rf.currTerm,  // Term
@@ -901,7 +864,6 @@ func (rf *Raft) ticker() {
 		// be started and to randomize sleeping time using
 		// time.Sleep().
 		if rf.state != Leader {
-			// DebugLog(dTimer, "S%d not leader, election timeout...\n", rf.me)
 
 			rf.isTimeout = true // 不加锁，后面会睡眠，所以不会有问题
 			ElectionTimeout()   // Electiontimeout(), 睡眠200-400ms

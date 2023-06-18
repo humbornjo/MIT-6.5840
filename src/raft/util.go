@@ -13,8 +13,7 @@ import (
 )
 
 // Debugging
-const Debug = true
-const LockDebug = false
+const Debug = false
 
 func DPrintf(format string, a ...interface{}) (n int, err error) {
 	if Debug {
@@ -89,34 +88,10 @@ func ElectionTimeout() {
 }
 
 func (rf *Raft) LogInfoByIndex(idx int) (index int, term int) {
-	// 初始化中，logEntries不为空了，为每个server加了一个初始log entry
-	// if len(rf.logEntries) == 0 {
-	// 	return 0, 0
-	// }
-	// rf.mu.Lock()
-	// defer rf.mu.Unlock()
-	// DebugLog(dError, "S%d LogInfo {IDX: %d, LENLOG: %d, LOG: %v}", rf.me, idx, len(rf.logEntries), rf.logEntries[len(rf.logEntries)-1])
 	t := &testing.T{}
 	assert.Conditionf(t, func() bool { return idx >= 0 && idx < len(rf.logEntries) }, "idx out of range")
 	index, term = rf.logEntries[idx].Index, rf.logEntries[idx].Term
 	return
-}
-
-func (rf *Raft) LogLock() {
-	if LockDebug {
-		DPrintf("try LogLock: %d\n", rf.me)
-	}
-	rf.mu.Lock()
-	if LockDebug {
-		DPrintf("get LogLock: %d\n", rf.me)
-	}
-}
-
-func (rf *Raft) LogUnlock() {
-	if LockDebug {
-		DPrintf("try Release LogLock: %d\n", rf.me)
-	}
-	rf.mu.Unlock()
 }
 
 func min(a, b int) int {
