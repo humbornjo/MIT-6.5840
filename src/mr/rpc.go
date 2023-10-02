@@ -14,16 +14,15 @@ import "strconv"
 // and reply for an RPC.
 //
 
-type ExampleArgs struct {
-	X int
+type AskForTaskArgs struct {
+	WorkerID int
 }
 
-type ExampleReply struct {
-	Y int
+type AskForTaskReply struct {
+	Stage Stage
+	Task  string
+	Nout  int
 }
-
-// Add your RPC definitions here.
-
 
 // Cook up a unique-ish UNIX-domain socket name
 // in /var/tmp, for the coordinator.
