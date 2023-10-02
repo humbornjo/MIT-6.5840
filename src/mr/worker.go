@@ -1,9 +1,12 @@
 package mr
 
-import "fmt"
-import "log"
-import "net/rpc"
-import "hash/fnv"
+import (
+	"fmt"
+	"hash/fnv"
+	"log"
+	"net/rpc"
+	"time"
+)
 
 // Map functions return a slice of KeyValue.
 type KeyValue struct {
@@ -24,31 +27,32 @@ func Worker(mapf func(string, string) []KeyValue,
 	reducef func(string, []string) string) {
 
 	// Your worker implementation here.
-
-	// uncomment to send the Example RPC to the coordinator.
-	AskForTask()
+	args := AskForTaskArgs{WorkerID: 1}
+	reply := AskForTaskReply{}
+	for {
+		AskForTask(&args, &reply)
+		fmt.Println("{}", reply.Task)
+		time.Sleep(time.Duration(time.Second * 5))
+	}
 
 }
 
 // example function to show how to make an RPC call to the coordinator.
 //
 // the RPC argument and reply types are defined in rpc.go.
-func AskForTask() {
+func AskForTask(args *AskForTaskArgs, reply *AskForTaskReply) {
 
 	// declare an argument structure.
-	args := AskForTaskArgs{}
 
 	// fill in the argument(s).
-	args.WorkerID = 1
 
 	// declare a reply structure.
-	reply := AskForTaskReply{}
 
 	// send the RPC request, wait for the reply.
 	// the "Coordinator.Example" tells the
 	// receiving server that we'd like to call
 	// the Example() method of struct Coordinator.
-	ok := call("Coordinator.DeliverTask", &args, &reply)
+	ok := call("Coordinator.DeliverTask", args, reply)
 	if ok {
 		// reply.Y should be 100.
 		fmt.Printf("reply.task %v\n", reply.Task)

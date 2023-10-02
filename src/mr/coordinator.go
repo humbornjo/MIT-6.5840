@@ -19,17 +19,15 @@ type Coordinator struct {
 	nMap     int
 	nReduce  int
 	stage    Stage
-	currTask []string
+	currTask chan string
 	nextTask []string
+	runnTask map[string]int
 }
 
 // Your code here -- RPC handlers for the worker to call.
-
-// an example RPC handler.
-//
-// the RPC argument and reply types are defined in rpc.go.
 func (c *Coordinator) DeliverTask(args *AskForTaskArgs, reply *AskForTaskReply) error {
-	reply.Task = "haha"
+	reply.Task = <-c.currTask
+	// 开始计时10秒，完成任务，否则删除字典项，任务重新入队
 	return nil
 }
 
@@ -66,12 +64,22 @@ func MakeCoordinator(files []string, nReduce int) *Coordinator {
 		nMap:     len(files),
 		nReduce:  nReduce,
 		stage:    MAP,
-		currTask: files,
+		currTask: make(chan string, max(len(files), nReduce)),
 		nextTask: []string{},
+		runnTask: make(map[string]int),
 	}
 
-	// Your code here.
+	for _, file := range files {
+		c.currTask <- file
+	}
 
 	c.server()
 	return &c
+}
+
+func max(a int, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
