@@ -15,13 +15,21 @@ import "strconv"
 //
 
 type AskForTaskArgs struct {
-	WorkerID int
+	Wid int
 }
 
 type AskForTaskReply struct {
-	Stage Stage
-	Task  string
+	Stage int
+	Task  Task
 	Nout  int
+}
+
+type ReportForTaskArgs struct {
+	Task Task
+}
+
+type ReportForTaskReply struct {
+	Foo bool
 }
 
 // Cook up a unique-ish UNIX-domain socket name
