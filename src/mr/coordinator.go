@@ -25,7 +25,6 @@ type Coordinator struct {
 	nReduce  int
 	stage    int
 	currTask chan Task
-	nextTask []string
 	runnTask map[Task]chan int
 	lock     sync.RWMutex
 }
@@ -97,7 +96,7 @@ func (c *Coordinator) GatherRes(args *ReportForTaskArgs, reply *ReportForTaskRep
 	}
 	c.lock.Unlock()
 
-	go c.nextStage()
+	go c.UpdateStage()
 
 	return nil
 }
@@ -129,7 +128,7 @@ func (c *Coordinator) Done() bool {
 	return ret
 }
 
-func (c *Coordinator) nextStage() {
+func (c *Coordinator) UpdateStage() {
 	// fmt.Printf("currTask: %d\n", len(c.currTask))
 	c.lock.Lock()
 	defer c.lock.Unlock()
@@ -159,7 +158,6 @@ func MakeCoordinator(files []string, nReduce int) *Coordinator {
 		nReduce:  nReduce,
 		stage:    MAP,
 		currTask: make(chan Task, max(len(files), nReduce)),
-		nextTask: []string{},
 		runnTask: make(map[Task]chan int),
 	}
 
@@ -174,7 +172,7 @@ func MakeCoordinator(files []string, nReduce int) *Coordinator {
 	go func() {
 		for {
 			time.Sleep(1 * time.Second)
-			c.nextStage()
+			c.UpdateStage()
 		}
 	}()
 
