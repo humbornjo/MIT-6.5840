@@ -25,7 +25,6 @@ type Coordinator struct {
 	nReduce  int
 	stage    int
 	currTask chan Task
-	nextTask []string
 	runnTask map[Task]chan int
 	lock     sync.RWMutex
 }
@@ -159,7 +158,6 @@ func MakeCoordinator(files []string, nReduce int) *Coordinator {
 		nReduce:  nReduce,
 		stage:    MAP,
 		currTask: make(chan Task, max(len(files), nReduce)),
-		nextTask: []string{},
 		runnTask: make(map[Task]chan int),
 	}
 

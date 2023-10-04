@@ -122,14 +122,13 @@ func Worker(mapf func(string, string) []KeyValue,
 			}
 			ofile.Close()
 
-			for _, filename := range filenames {
-				os.Remove(filename)
-			}
-
 			if !ReportForTask(&ReportForTaskArgs{Task: reply.Task}, &ReportForTaskReply{}) {
 				os.Remove(oname)
+			} else {
+				for _, filename := range filenames {
+					os.Remove(filename)
+				}
 			}
-
 		case IDLE | DONE:
 		}
 	}
